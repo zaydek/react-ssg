@@ -1,4 +1,5 @@
-import React from "react"
+import * as React from "react"
+// import { Link } from "react-router-dom"
 
 export default function B() {
 	React.useEffect(() => {
@@ -11,6 +12,11 @@ export default function B() {
 			console.log("goodbye from b")
 		}
 	}, [])
-	// return <a href="a">b -- click to open page a</a>
-	return <button>b</button>
+	return (
+		<>
+			<h1>Hello from b</h1>
+			<a href="/a">goto a</a>
+			<a href="/">goto /</a>
+		</>
+	)
 }

@@ -21,10 +21,17 @@ function Document({ route }: { route: React.ReactElement }) {
 	)
 }
 
+function index(str: string) {
+	if (str === "/") {
+		return "index"
+	}
+	return str
+}
+
 ;(() => {
 	Object.keys(routes).forEach(key => {
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(<Document route={routes[key]} />)}`
-		fs.writeFile(`public/${key}.html`, doc, err => {
+		fs.writeFile(`public/${index(key)}.html`, doc, err => {
 			if (err) {
 				throw new Error("ssr: an unexpected error occurred: " + err)
 			}
