@@ -2684,7 +2684,7 @@
         var HostPortal = 4;
         var HostComponent = 5;
         var HostText = 6;
-        var Fragment2 = 7;
+        var Fragment = 7;
         var Mode = 8;
         var ContextConsumer = 9;
         var ContextProvider = 10;
@@ -11881,7 +11881,7 @@
             }
           }
           function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-            if (current2 === null || current2.tag !== Fragment2) {
+            if (current2 === null || current2.tag !== Fragment) {
               var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
               created.return = returnFiber;
               return created;
@@ -12249,7 +12249,7 @@
             while (child !== null) {
               if (child.key === key) {
                 switch (child.tag) {
-                  case Fragment2: {
+                  case Fragment: {
                     if (element.type === REACT_FRAGMENT_TYPE) {
                       deleteRemainingChildren(returnFiber, child.sibling);
                       var existing = useFiber(child, element.props.children);
@@ -15853,7 +15853,7 @@
               var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
               return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
             }
-            case Fragment2:
+            case Fragment:
               return updateFragment(current2, workInProgress2, renderLanes2);
             case Mode:
               return updateMode(current2, workInProgress2, renderLanes2);
@@ -16020,7 +16020,7 @@
             case SimpleMemoComponent:
             case FunctionComponent:
             case ForwardRef:
-            case Fragment2:
+            case Fragment:
             case Mode:
             case Profiler:
             case ContextConsumer:
@@ -19724,7 +19724,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           return fiber;
         }
         function createFiberFromFragment(elements, mode, lanes, key) {
-          var fiber = createFiber(Fragment2, elements, key, mode);
+          var fiber = createFiber(Fragment, elements, key, mode);
           fiber.lanes = lanes;
           return fiber;
         }
@@ -20634,23 +20634,31 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function A() {
     React.useEffect(() => {
       console.log("hello from a");
+      const id = setInterval(() => {
+        console.log("hello from a interval");
+      }, 1e3);
       return () => {
+        clearInterval(id);
         console.log("goodbye from a");
       };
     }, []);
-    return /* @__PURE__ */ React.createElement(React.Fragment, null, "Hello, world! (A)");
+    return /* @__PURE__ */ React.createElement("button", null, "a");
   }
 
   // src/b.tsx
   var react = __toModule(require_react());
   function B() {
     react.default.useEffect(() => {
-      console.log("hello from a");
+      console.log("hello from b");
+      const id = setInterval(() => {
+        console.log("hello from b interval");
+      }, 1e3);
       return () => {
-        console.log("goodbye from a");
+        clearInterval(id);
+        console.log("goodbye from b");
       };
     }, []);
-    return /* @__PURE__ */ react.default.createElement(react.default.Fragment, null, "Hello, world! (B)");
+    return /* @__PURE__ */ react.default.createElement("button", null, "b");
   }
 
   // src/app.tsx

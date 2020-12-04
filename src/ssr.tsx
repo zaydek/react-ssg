@@ -3,7 +3,7 @@ import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
 import routes from "./routes"
 
-function Document({ route: Route }: { route: React.ReactElement }) {
+function Document({ route }: { route: React.ReactElement }) {
 	return (
 		<html lang="en">
 			<head>
@@ -14,7 +14,7 @@ function Document({ route: Route }: { route: React.ReactElement }) {
 				<link rel="stylesheet" href="style.css" />
 			</head>
 			<body>
-				<div id="root">{ReactDOMServer.renderToString(Route)}</div>
+				<div id="root">{route}</div>
 				<script src="script.js"></script>
 			</body>
 		</html>
@@ -31,23 +31,3 @@ function Document({ route: Route }: { route: React.ReactElement }) {
 		})
 	})
 })()
-
-// for (const route of routes) {
-// 	const doc = `
-// 		<!DOCTYPE html>
-// 		${ReactDOMServer.renderToString(<Document />)}
-// 	`.trim()
-// 	fs.writeFile("public/index.html", doc, err => {
-// 		if (err) return console.log(err)
-// 	})
-// }
-
-// ;(function main() {
-// 	const doc = `
-// 		<!DOCTYPE html>
-// 		${ReactDOMServer.renderToString(<Document />)}
-// 	`.trim()
-// 	fs.writeFile("public/index.html", doc, err => {
-// 		if (err) return console.log(err)
-// 	})
-// })()

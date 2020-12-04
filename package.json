@@ -5,8 +5,8 @@
     "force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
     "build-html": "ts-node --transpile-only src/ssr.tsx",
     "build-js": "node esbuild.js",
-    "watch-html": "yarn watch --interval 0.1 'yarn build-js && yarn force-refresh' src",
-    "watch-js": "yarn watch --interval 0.1 'yarn build-html' src"
+    "watch-html": "yarn watch --interval 0.1 'yarn build-html' src",
+    "watch-js": "yarn watch --interval 0.1 'yarn build-js' src && yarn force-refresh"
   },
   "devDependencies": {
     "@types/node": "^14.14.10",
