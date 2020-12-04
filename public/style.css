@@ -1,0 +1,18 @@
+button.hstack,
+button.vstack {
+	width: 100%;
+}
+
+button:focus {
+	outline: none;
+}
+
+/* TODO: Put separator? */
+.hstack:not([class^="w-"]):not([class*=" w-"]):not([class^="h-"]):not([class*=" h-"]),
+.vstack:not([class^="w-"]):not([class*=" w-"]):not([class^="h-"]):not([class*=" h-"]) {
+	align-self: stretch;
+}
+
+.vstack > hr {
+	width: 100%;
+}
