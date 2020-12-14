@@ -1,4 +1,4 @@
-import Index from "./index"
+import App from "./app"
 import React from "react"
 
 interface IRoutes {
@@ -7,9 +7,9 @@ interface IRoutes {
 }
 
 const routes: IRoutes = {
-	"/": <Index location="/" />,
-	"/a": <Index location="/a" />,
-	"/b": <Index location="/b" />,
+	"/": <App location="/" />,
+	"/a": <App location="/a" />,
+	"/b": <App location="/b" />,
 }
 
 export default routes

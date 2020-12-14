@@ -8,3 +8,6 @@
 
 # NPM
 /dist
+
+# React
+/public/script.js
