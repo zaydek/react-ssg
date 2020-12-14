@@ -12,10 +12,10 @@ export default function A() {
 		}
 	}, [])
 	return (
-		<>
+		<div>
 			<h1>Hello from a</h1>
 			<a href="/b">goto b</a>
 			<a href="/">goto /</a>
-		</>
+		</div>
 	)
 }

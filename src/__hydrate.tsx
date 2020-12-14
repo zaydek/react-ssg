@@ -1,6 +1,7 @@
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 import App from "./app"
+import { BrowserRouter } from "react-router-dom"
 
 // This is the entry point for esbuild. This file compiles down to
 // script.js. So this is the entry point for the React runtime and
@@ -13,8 +14,9 @@ import App from "./app"
 // - Routing
 // - CSS
 //
-// prettier-ignore
 ReactDOM.hydrate(
-	<App location={window.location.pathname} />,
-	document.getElementById("root")
+	<BrowserRouter>
+		<App location={window.location.pathname} />
+	</BrowserRouter>,
+	document.getElementById("root"),
 )

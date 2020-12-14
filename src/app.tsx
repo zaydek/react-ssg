@@ -1,48 +1,52 @@
 import A from "./a"
 import B from "./b"
 import React from "react"
-import { Route, StaticRouter, Switch } from "react-router-dom"
+import { Link, Route, StaticRouter, Switch } from "react-router-dom"
 
 function Nav() {
 	return (
-		<div className="hstack space-16 px-24 py-16">
-			<a className="group" href="/">
+		<div className="hstack space-16">
+			<Link className="group" to="/">
 				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
 					<div>React SSG</div>
 				</div>
-			</a>
+			</Link>
 			<div className="spacer"></div>
-			<a className="group" href="/">
+			<Link className="group" to="/">
 				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
 					<div>Open /</div>
 				</div>
-			</a>
-			<a className="group" href="/a">
+			</Link>
+			<Link className="group" to="/a">
 				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
 					<div>Open /a</div>
 				</div>
-			</a>
-			<a className="group" href="/b">
+			</Link>
+			<Link className="group" to="/b">
 				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
 					<div>Open /b</div>
 				</div>
-			</a>
+			</Link>
 		</div>
 	)
 }
 
-export default function Index({ location }: { location: string }) {
+// TODO: We should be able to compose routing based on a static data structure.
+// Whether this is ideal or not I don’t know.
+export default function Index({ location }: { location?: string | object | undefined }) {
 	return (
 		<StaticRouter location={location}>
-			<Nav />
-			<Switch>
-				<Route path="/a" exact>
-					<A />
-				</Route>
-				<Route path="/b" exact>
-					<B />
-				</Route>
-			</Switch>
+			<div className="container vstack align-start space-64 px-32 py-24">
+				<Nav />
+				<Switch>
+					<Route path="/a" exact>
+						<A />
+					</Route>
+					<Route path="/b" exact>
+						<B />
+					</Route>
+				</Switch>
+			</div>
 		</StaticRouter>
 	)
 }
