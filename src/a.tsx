@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Link } from "react-router-dom"
 
 export default function A() {
 	React.useEffect(() => {
@@ -12,10 +13,15 @@ export default function A() {
 		}
 	}, [])
 	return (
-		<div>
-			<h1>Hello from a</h1>
-			<a href="/b">goto b</a>
-			<a href="/">goto /</a>
+		<div className="vstack align-start space-16">
+			<div className="hstack align-self-start w-160 h-32 bg-gray-200 rounded-full">
+				<div>This is page /a</div>
+			</div>
+			<Link className="group" to="/b">
+				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
+					<div>Open /b</div>
+				</div>
+			</Link>
 		</div>
 	)
 }
