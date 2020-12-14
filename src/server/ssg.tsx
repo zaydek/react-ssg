@@ -1,5 +1,5 @@
 import Document from "../client/document"
-import handle from "./handle"
+import handle from "../utils/handle"
 import path from "path"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
