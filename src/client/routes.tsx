@@ -1,10 +1,6 @@
 import App from "./app"
-import React from "react"
-
-interface IRoutes {
-	// TODO: Add support for props, async code.
-	[key: string]: React.ReactElement
-}
+import * as React from "react"
+import type { IRoutes } from "../server/types"
 
 // TODO: Do we need this? Should this be in client or server?
 const routes: IRoutes = {
