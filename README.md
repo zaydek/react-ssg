@@ -43,12 +43,12 @@ your app is compiled via the TypeScript compiler, Babel becomes obsolete. Huh? B
 can actually understand your code. Just in case this wasn’t clear to you, browsers can’t actually interpret JSX on their
 own. So Babel is a tool that provides a translation layer between your code and standard JS so everyone’s happy. But
 guess what? You don’t actually need Babel if you use TypeScript, because the TypeScript compiler can compile TSX and JSX
-down to JavaScript, and therefore the browser is happy. 😄
+down to JavaScript, and therefore the browsers are happy. 😄
 
 Using TypeScript is also a good idea because it means our apps are type-safe by default. No, you don’t have to use
 TypeScript, but should you? It depends. But yeah, TypeScript pays for itself once you get over the learning curve. So
-why not? Full disclosure: It took me like 4-5 tries to really value TypeScript. So if you don’t get it at first don’t be
-discouraged.
+why not? Full disclosure: It took me like 4-5 tries to really value TypeScript. So if you don’t get it at first, don’t
+be discouraged.
 
 OK what about ts-node? The thing is, while the TypeScript compiler can compile your code, it actually can’t / doesn’t
 _run_ your code. What? Well browsers run your code, or Node can run your code, but if you want to run your TypeScript
@@ -56,11 +56,11 @@ code, you can use ts-node as a mechanism to invoke Node to run your TypeScript s
 use Node if TypeScript isn’t for you.
 
 And what’s the deal with esbuild? We need a way to bundles our code for the browser, not just compile down from TSX /
-JSX to JS. Instead of using / learning / configuring webpack, we can actually just use esbuild. esbuild is an amazing
-tool that bundles your code for the browser. What does that mean? Generally, you want to be able to use `import` and
-`export` to compose your apps logically, and you want to ship one script file (if possible) to the browser. This is
-exactly what esbuild enables us to do: we don’t need to concern ourselves with anything besides app development because
-esbuild bundle our code for the browser. Best of all, esbuild is actually written in Go and is wicked fast.
+JSX to JS. Instead of learning / configuring webpack, we can actually just use esbuild. esbuild is an amazing tool that
+bundles your code for the browser. What does that mean? Generally, you want to be able to use `import` and `export` to
+compose your apps logically, and you want to ship one script file (if possible) to the browser. This is exactly what
+esbuild enables us to do: We don’t need to concern ourselves with anything besides app development because esbuild
+bundles our code for the browser. Best of all, esbuild is actually written in Go and is wicked fast.
 
 So what happens when we create a development environment around these tools?
 
@@ -70,5 +70,5 @@ So what happens when we create a development environment around these tools?
 - We understand our tools and their scope
 - We are more competent and more autonomous
 
-At worst, this is a fanciful experiment that demonstrates the power of thinking from first principles as applied to
+At worst, this is a fanciful experiment that demonstrates the power of thinking from first principles, as applied to
 server-side generated React, and at best this is the new baseline for how I develop all future web apps.
