@@ -15,8 +15,9 @@ import { BrowserRouter } from "react-router-dom"
 // - CSS
 //
 ReactDOM.hydrate(
+	// TODO: Move `<StaticRouter>` from app.tsx to __ssg.tsx.
 	<BrowserRouter>
-		<App location={window.location.pathname} />
+		<App /* location={window.location.pathname} */ />
 	</BrowserRouter>,
 	document.getElementById("root"),
 )

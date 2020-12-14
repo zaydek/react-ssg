@@ -7,9 +7,9 @@ interface IRoutes {
 }
 
 const routes: IRoutes = {
-	"/": <App location="/" />,
-	"/a": <App location="/a" />,
-	"/b": <App location="/b" />,
+	"/": <App /* location="/" */ />,
+	"/a": <App /* location="/a" */ />,
+	"/b": <App /* location="/b" */ />,
 }
 
 export default routes

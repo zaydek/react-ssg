@@ -1,7 +1,7 @@
 import A from "./a"
 import B from "./b"
 import React from "react"
-import { Link, Route, StaticRouter, Switch } from "react-router-dom"
+import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
 	return (
@@ -33,20 +33,18 @@ function Nav() {
 
 // TODO: We should be able to compose routing based on a static data structure.
 // Whether this is ideal or not I don’t know.
-export default function Index({ location }: { location?: string | object | undefined }) {
+export default function Index(/* { location }: { location?: string | object | undefined } */) {
 	return (
-		<StaticRouter location={location}>
-			<div className="container vstack align-start space-64 px-32 py-24">
-				<Nav />
-				<Switch>
-					<Route path="/a" exact>
-						<A />
-					</Route>
-					<Route path="/b" exact>
-						<B />
-					</Route>
-				</Switch>
-			</div>
-		</StaticRouter>
+		<div className="container vstack align-start space-64 px-32 py-24">
+			<Nav />
+			<Switch>
+				<Route path="/a" exact>
+					<A />
+				</Route>
+				<Route path="/b" exact>
+					<B />
+				</Route>
+			</Switch>
+		</div>
 	)
 }

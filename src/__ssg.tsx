@@ -2,7 +2,7 @@ import * as fs from "fs"
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
 import routes from "./routes"
-import { BrowserRouter } from "react-router-dom"
+import { StaticRouter } from "react-router-dom"
 
 // TODO: Extract to a compositional API.
 // TODO: We probably need some high-level components like:
@@ -39,7 +39,11 @@ function index(path: string) {
 
 ;(() => {
 	Object.keys(routes).forEach(key => {
-		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(<Document route={routes[key]} />)}`
+		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
+			<StaticRouter location={key}>
+				<Document route={routes[key]} />
+			</StaticRouter>,
+		)}`
 		fs.writeFile(`public/${index(key)}.html`, doc, err => {
 			if (err) {
 				throw new Error("ssr: an unexpected error occurred: " + err)
