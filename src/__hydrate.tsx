@@ -6,6 +6,13 @@ import App from "./app"
 // script.js. So this is the entry point for the React runtime and
 // the app.
 //
+// TODO: Can this be provided by the framework? Therefore the developer
+// only needs to concern themselves with:
+//
+// - App development
+// - Routing
+// - CSS
+//
 // prettier-ignore
 ReactDOM.hydrate(
 	<App location={window.location.pathname} />,
