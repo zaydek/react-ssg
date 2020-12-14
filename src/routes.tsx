@@ -1,17 +1,15 @@
+import Index from "./index"
 import React from "react"
 
-import A from "./a"
-import B from "./b"
-import Index from "./Index"
-
 interface IRoutes {
+	// TODO: Add support for props, async code.
 	[key: string]: React.ReactElement
 }
 
 const routes: IRoutes = {
-	"/": <Index />,
-	"/a": <A />,
-	"/b": <B />,
+	"/": <Index location="/" />,
+	"/a": <Index location="/a" />,
+	"/b": <Index location="/b" />,
 }
 
 export default routes

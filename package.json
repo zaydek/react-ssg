@@ -5,11 +5,11 @@
 		"/* force-refresh: Force refreshes the active tab */": "",
 		"force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
 		"/* build-html: Builds static HTML */": "",
-		"build-html": "ts-node --transpile-only src/ssr.tsx",
+		"build-html": "ts-node --transpile-only src/ssg.tsx",
 		"/* build-js: Builds static JS */": "",
 		"build-js": "node esbuild.js",
 		"/* watch-js: Watcher for building static JS */": "",
-		"watch-js": "yarn watch --interval 0.1 'yarn build-html && yarn build-js && yarn force-refresh' src"
+		"watch-ssg": "yarn watch --interval 0.1 'yarn build-html && yarn build-js && yarn force-refresh' src"
 	},
 	"dependencies": {
 		"react": "^17.0.1",

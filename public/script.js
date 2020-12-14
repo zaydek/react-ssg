@@ -952,7 +952,7 @@
           }
           return lazyType;
         }
-        function forwardRef2(render) {
+        function forwardRef(render) {
           {
             if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
               error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1636,7 +1636,7 @@
         exports.createElement = createElement$1;
         exports.createFactory = createFactory;
         exports.createRef = createRef;
-        exports.forwardRef = forwardRef2;
+        exports.forwardRef = forwardRef;
         exports.isValidElement = isValidElement;
         exports.lazy = lazy;
         exports.memo = memo;
@@ -1873,9 +1873,9 @@
             }
           }
         }
-        function compare(a3, b3) {
-          var diff = a3.sortIndex - b3.sortIndex;
-          return diff !== 0 ? diff : a3.id - b3.id;
+        function compare(a2, b2) {
+          var diff = a2.sortIndex - b2.sortIndex;
+          return diff !== 0 ? diff : a2.id - b2.id;
         }
         var NoPriority = 0;
         var ImmediatePriority = 1;
@@ -2636,11 +2636,11 @@
     if (true) {
       (function() {
         "use strict";
-        var React8 = require_react();
+        var React7 = require_react();
         var _assign = require_object_assign();
         var Scheduler = require_scheduler();
         var tracing = require_tracing();
-        var ReactSharedInternals = React8.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+        var ReactSharedInternals = React7.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
         function warn(format) {
           {
             for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2672,7 +2672,7 @@
             Function.prototype.apply.call(console[level], console, argsWithFormat);
           }
         }
-        if (!React8) {
+        if (!React7) {
           {
             throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
           }
@@ -3888,7 +3888,7 @@
         var didWarnInvalidChild = false;
         function flattenChildren(children) {
           var content = "";
-          React8.Children.forEach(children, function(child) {
+          React7.Children.forEach(children, function(child) {
             if (child == null) {
               return;
             }
@@ -3899,7 +3899,7 @@
         function validateProps(element, props) {
           {
             if (typeof props.children === "object" && props.children !== null) {
-              React8.Children.forEach(props.children, function(child) {
+              React7.Children.forEach(props.children, function(child) {
                 if (child == null) {
                   return;
                 }
@@ -5356,8 +5356,8 @@
         var batchedUpdatesImpl = function(fn, bookkeeping) {
           return fn(bookkeeping);
         };
-        var discreteUpdatesImpl = function(fn, a3, b3, c, d) {
-          return fn(a3, b3, c, d);
+        var discreteUpdatesImpl = function(fn, a2, b2, c, d) {
+          return fn(a2, b2, c, d);
         };
         var flushDiscreteUpdatesImpl = function() {
         };
@@ -5383,23 +5383,23 @@
             finishEventHandler();
           }
         }
-        function batchedEventUpdates(fn, a3, b3) {
+        function batchedEventUpdates(fn, a2, b2) {
           if (isBatchingEventUpdates) {
-            return fn(a3, b3);
+            return fn(a2, b2);
           }
           isBatchingEventUpdates = true;
           try {
-            return batchedEventUpdatesImpl(fn, a3, b3);
+            return batchedEventUpdatesImpl(fn, a2, b2);
           } finally {
             isBatchingEventUpdates = false;
             finishEventHandler();
           }
         }
-        function discreteUpdates(fn, a3, b3, c, d) {
+        function discreteUpdates(fn, a2, b2, c, d) {
           var prevIsInsideEventHandler = isInsideEventHandler;
           isInsideEventHandler = true;
           try {
-            return discreteUpdatesImpl(fn, a3, b3, c, d);
+            return discreteUpdatesImpl(fn, a2, b2, c, d);
           } finally {
             isInsideEventHandler = prevIsInsideEventHandler;
             if (!isInsideEventHandler) {
@@ -5476,7 +5476,7 @@
             passiveBrowserEventsSupported = false;
           }
         }
-        function invokeGuardedCallbackProd(name, func, context2, a3, b3, c, d, e, f) {
+        function invokeGuardedCallbackProd(name, func, context2, a2, b2, c, d, e, f) {
           var funcArgs = Array.prototype.slice.call(arguments, 3);
           try {
             func.apply(context2, funcArgs);
@@ -5488,7 +5488,7 @@
         {
           if (typeof window !== "undefined" && typeof window.dispatchEvent === "function" && typeof document !== "undefined" && typeof document.createEvent === "function") {
             var fakeNode = document.createElement("react");
-            invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context2, a3, b3, c, d, e, f) {
+            invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context2, a2, b2, c, d, e, f) {
               if (!(typeof document !== "undefined")) {
                 {
                   throw Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
@@ -5565,12 +5565,12 @@
             caughtError = error2;
           }
         };
-        function invokeGuardedCallback(name, func, context2, a3, b3, c, d, e, f) {
+        function invokeGuardedCallback(name, func, context2, a2, b2, c, d, e, f) {
           hasError = false;
           caughtError = null;
           invokeGuardedCallbackImpl$1.apply(reporter, arguments);
         }
-        function invokeGuardedCallbackAndCatchFirstError(name, func, context2, a3, b3, c, d, e, f) {
+        function invokeGuardedCallbackAndCatchFirstError(name, func, context2, a2, b2, c, d, e, f) {
           invokeGuardedCallback.apply(this, arguments);
           if (hasError) {
             var error2 = clearCaughtError();
@@ -5717,10 +5717,10 @@
             }
             return fiber;
           }
-          var a3 = fiber;
-          var b3 = alternate;
+          var a2 = fiber;
+          var b2 = alternate;
           while (true) {
-            var parentA = a3.return;
+            var parentA = a2.return;
             if (parentA === null) {
               break;
             }
@@ -5728,7 +5728,7 @@
             if (parentB === null) {
               var nextParent = parentA.return;
               if (nextParent !== null) {
-                a3 = b3 = nextParent;
+                a2 = b2 = nextParent;
                 continue;
               }
               break;
@@ -5736,11 +5736,11 @@
             if (parentA.child === parentB.child) {
               var child = parentA.child;
               while (child) {
-                if (child === a3) {
+                if (child === a2) {
                   assertIsMounted(parentA);
                   return fiber;
                 }
-                if (child === b3) {
+                if (child === b2) {
                   assertIsMounted(parentA);
                   return alternate;
                 }
@@ -5752,23 +5752,23 @@
                 }
               }
             }
-            if (a3.return !== b3.return) {
-              a3 = parentA;
-              b3 = parentB;
+            if (a2.return !== b2.return) {
+              a2 = parentA;
+              b2 = parentB;
             } else {
               var didFindChild = false;
               var _child = parentA.child;
               while (_child) {
-                if (_child === a3) {
+                if (_child === a2) {
                   didFindChild = true;
-                  a3 = parentA;
-                  b3 = parentB;
+                  a2 = parentA;
+                  b2 = parentB;
                   break;
                 }
-                if (_child === b3) {
+                if (_child === b2) {
                   didFindChild = true;
-                  b3 = parentA;
-                  a3 = parentB;
+                  b2 = parentA;
+                  a2 = parentB;
                   break;
                 }
                 _child = _child.sibling;
@@ -5776,16 +5776,16 @@
               if (!didFindChild) {
                 _child = parentB.child;
                 while (_child) {
-                  if (_child === a3) {
+                  if (_child === a2) {
                     didFindChild = true;
-                    a3 = parentB;
-                    b3 = parentA;
+                    a2 = parentB;
+                    b2 = parentA;
                     break;
                   }
-                  if (_child === b3) {
+                  if (_child === b2) {
                     didFindChild = true;
-                    b3 = parentB;
-                    a3 = parentA;
+                    b2 = parentB;
+                    a2 = parentA;
                     break;
                   }
                   _child = _child.sibling;
@@ -5797,18 +5797,18 @@
                 }
               }
             }
-            if (!(a3.alternate === b3)) {
+            if (!(a2.alternate === b2)) {
               {
                 throw Error("Return fibers should always be each others' alternates. This error is likely caused by a bug in React. Please file an issue.");
               }
             }
           }
-          if (!(a3.tag === HostRoot)) {
+          if (!(a2.tag === HostRoot)) {
             {
               throw Error("Unable to find node on an unmounted component.");
             }
           }
-          if (a3.stateNode.current === a3) {
+          if (a2.stateNode.current === a2) {
             return fiber;
           }
           return alternate;
@@ -6711,14 +6711,14 @@
         function laneToIndex(lane) {
           return pickArbitraryLaneIndex(lane);
         }
-        function includesSomeLane(a3, b3) {
-          return (a3 & b3) !== NoLanes;
+        function includesSomeLane(a2, b2) {
+          return (a2 & b2) !== NoLanes;
         }
         function isSubsetOfLanes(set2, subset) {
           return (set2 & subset) === subset;
         }
-        function mergeLanes(a3, b3) {
-          return a3 | b3;
+        function mergeLanes(a2, b2) {
+          return a2 | b2;
         }
         function removeLanes(set2, subset) {
           return set2 & ~subset;
@@ -6726,8 +6726,8 @@
         function laneToLanes(lane) {
           return lane;
         }
-        function higherPriorityLane(a3, b3) {
-          return a3 !== NoLane && a3 < b3 ? a3 : b3;
+        function higherPriorityLane(a2, b2) {
+          return a2 !== NoLane && a2 < b2 ? a2 : b2;
         }
         function createLaneMap(initial) {
           var laneMap = [];
@@ -11105,7 +11105,7 @@
         }
         var fakeInternalInstance = {};
         var isArray = Array.isArray;
-        var emptyRefsObject = new React8.Component().refs;
+        var emptyRefsObject = new React7.Component().refs;
         var didWarnAboutStateAssignmentForComponent;
         var didWarnAboutUninitializedState;
         var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -17875,11 +17875,11 @@
           }
           flushSyncCallbackQueue();
         }
-        function batchedUpdates$1(fn, a3) {
+        function batchedUpdates$1(fn, a2) {
           var prevExecutionContext = executionContext;
           executionContext |= BatchedContext;
           try {
-            return fn(a3);
+            return fn(a2);
           } finally {
             executionContext = prevExecutionContext;
             if (executionContext === NoContext) {
@@ -17888,11 +17888,11 @@
             }
           }
         }
-        function batchedEventUpdates$1(fn, a3) {
+        function batchedEventUpdates$1(fn, a2) {
           var prevExecutionContext = executionContext;
           executionContext |= EventContext;
           try {
-            return fn(a3);
+            return fn(a2);
           } finally {
             executionContext = prevExecutionContext;
             if (executionContext === NoContext) {
@@ -17901,12 +17901,12 @@
             }
           }
         }
-        function discreteUpdates$1(fn, a3, b3, c, d) {
+        function discreteUpdates$1(fn, a2, b2, c, d) {
           var prevExecutionContext = executionContext;
           executionContext |= DiscreteEventContext;
           {
             try {
-              return runWithPriority$1(UserBlockingPriority$2, fn.bind(null, a3, b3, c, d));
+              return runWithPriority$1(UserBlockingPriority$2, fn.bind(null, a2, b2, c, d));
             } finally {
               executionContext = prevExecutionContext;
               if (executionContext === NoContext) {
@@ -17916,12 +17916,12 @@
             }
           }
         }
-        function unbatchedUpdates(fn, a3) {
+        function unbatchedUpdates(fn, a2) {
           var prevExecutionContext = executionContext;
           executionContext &= ~BatchedContext;
           executionContext |= LegacyUnbatchedContext;
           try {
-            return fn(a3);
+            return fn(a2);
           } finally {
             executionContext = prevExecutionContext;
             if (executionContext === NoContext) {
@@ -17930,19 +17930,19 @@
             }
           }
         }
-        function flushSync(fn, a3) {
+        function flushSync(fn, a2) {
           var prevExecutionContext = executionContext;
           if ((prevExecutionContext & (RenderContext | CommitContext)) !== NoContext) {
             {
               error("flushSync was called from inside a lifecycle method. React cannot flush when React is already rendering. Consider moving this call to a scheduler task or micro task.");
             }
-            return fn(a3);
+            return fn(a2);
           }
           executionContext |= BatchedContext;
           {
             try {
               if (fn) {
-                return runWithPriority$1(ImmediatePriority$1, fn.bind(null, a3));
+                return runWithPriority$1(ImmediatePriority$1, fn.bind(null, a2));
               } else {
                 return void 0;
               }
@@ -21616,7 +21616,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   });
 
   // src/app.tsx
-  var React7 = __toModule(require_react());
+  var React6 = __toModule(require_react());
   var ReactDOM = __toModule(require_react_dom());
 
   // src/a.tsx
@@ -21660,7 +21660,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // src/index.tsx
-  var react4 = __toModule(require_react());
+  var react3 = __toModule(require_react());
 
   // node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
   function _inheritsLoose(subClass, superClass) {
@@ -21751,23 +21751,23 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   function valueOf(obj) {
     return obj.valueOf ? obj.valueOf() : Object.prototype.valueOf.call(obj);
   }
-  function valueEqual(a3, b3) {
-    if (a3 === b3)
+  function valueEqual(a2, b2) {
+    if (a2 === b2)
       return true;
-    if (a3 == null || b3 == null)
+    if (a2 == null || b2 == null)
       return false;
-    if (Array.isArray(a3)) {
-      return Array.isArray(b3) && a3.length === b3.length && a3.every(function(item, index3) {
-        return valueEqual(item, b3[index3]);
+    if (Array.isArray(a2)) {
+      return Array.isArray(b2) && a2.length === b2.length && a2.every(function(item, index3) {
+        return valueEqual(item, b2[index3]);
       });
     }
-    if (typeof a3 === "object" || typeof b3 === "object") {
-      var aValue = valueOf(a3);
-      var bValue = valueOf(b3);
-      if (aValue !== a3 || bValue !== b3)
+    if (typeof a2 === "object" || typeof b2 === "object") {
+      var aValue = valueOf(a2);
+      var bValue = valueOf(b2);
+      if (aValue !== a2 || bValue !== b2)
         return valueEqual(aValue, bValue);
-      return Object.keys(Object.assign({}, a3, b3)).every(function(key) {
-        return valueEqual(a3[key], b3[key]);
+      return Object.keys(Object.assign({}, a2, b2)).every(function(key) {
+        return valueEqual(a2[key], b2[key]);
       });
     }
     return false;
@@ -21808,21 +21808,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var tiny_invariant_esm_default = invariant;
 
   // node_modules/history/esm/history.js
-  function addLeadingSlash(path) {
-    return path.charAt(0) === "/" ? path : "/" + path;
-  }
-  function stripLeadingSlash(path) {
-    return path.charAt(0) === "/" ? path.substr(1) : path;
-  }
-  function hasBasename(path, prefix2) {
-    return path.toLowerCase().indexOf(prefix2.toLowerCase()) === 0 && "/?#".indexOf(path.charAt(prefix2.length)) !== -1;
-  }
-  function stripBasename(path, prefix2) {
-    return hasBasename(path, prefix2) ? path.substr(prefix2.length) : path;
-  }
-  function stripTrailingSlash(path) {
-    return path.charAt(path.length - 1) === "/" ? path.slice(0, -1) : path;
-  }
   function parsePath(path) {
     var pathname = path || "/";
     var search = "";
@@ -21900,8 +21885,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     }
     return location;
   }
-  function locationsAreEqual(a3, b3) {
-    return a3.pathname === b3.pathname && a3.search === b3.search && a3.hash === b3.hash && a3.key === b3.key && value_equal_default(a3.state, b3.state);
+  function locationsAreEqual(a2, b2) {
+    return a2.pathname === b2.pathname && a2.search === b2.search && a2.hash === b2.hash && a2.key === b2.key && value_equal_default(a2.state, b2.state);
   }
   function createTransitionManager() {
     var prompt = null;
@@ -21961,467 +21946,6 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
   }
   var canUseDOM = !!(typeof window !== "undefined" && window.document && window.document.createElement);
-  function getConfirmation(message, callback) {
-    callback(window.confirm(message));
-  }
-  function supportsHistory() {
-    var ua = window.navigator.userAgent;
-    if ((ua.indexOf("Android 2.") !== -1 || ua.indexOf("Android 4.0") !== -1) && ua.indexOf("Mobile Safari") !== -1 && ua.indexOf("Chrome") === -1 && ua.indexOf("Windows Phone") === -1)
-      return false;
-    return window.history && "pushState" in window.history;
-  }
-  function supportsPopStateOnHashChange() {
-    return window.navigator.userAgent.indexOf("Trident") === -1;
-  }
-  function supportsGoWithoutReloadUsingHash() {
-    return window.navigator.userAgent.indexOf("Firefox") === -1;
-  }
-  function isExtraneousPopstateEvent(event) {
-    return event.state === void 0 && navigator.userAgent.indexOf("CriOS") === -1;
-  }
-  var PopStateEvent = "popstate";
-  var HashChangeEvent = "hashchange";
-  function getHistoryState() {
-    try {
-      return window.history.state || {};
-    } catch (e) {
-      return {};
-    }
-  }
-  function createBrowserHistory(props) {
-    if (props === void 0) {
-      props = {};
-    }
-    !canUseDOM ? tiny_invariant_esm_default(false, "Browser history needs a DOM") : void 0;
-    var globalHistory = window.history;
-    var canUseHistory = supportsHistory();
-    var needsHashChangeListener = !supportsPopStateOnHashChange();
-    var _props = props, _props$forceRefresh = _props.forceRefresh, forceRefresh = _props$forceRefresh === void 0 ? false : _props$forceRefresh, _props$getUserConfirm = _props.getUserConfirmation, getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm, _props$keyLength = _props.keyLength, keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;
-    var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : "";
-    function getDOMLocation(historyState) {
-      var _ref = historyState || {}, key = _ref.key, state = _ref.state;
-      var _window$location = window.location, pathname = _window$location.pathname, search = _window$location.search, hash = _window$location.hash;
-      var path = pathname + search + hash;
-      tiny_warning_esm_default(!basename || hasBasename(path, basename), 'You are attempting to use a basename on a page whose URL path does not begin with the basename. Expected path "' + path + '" to begin with "' + basename + '".');
-      if (basename)
-        path = stripBasename(path, basename);
-      return createLocation(path, state, key);
-    }
-    function createKey() {
-      return Math.random().toString(36).substr(2, keyLength);
-    }
-    var transitionManager = createTransitionManager();
-    function setState(nextState) {
-      _extends(history3, nextState);
-      history3.length = globalHistory.length;
-      transitionManager.notifyListeners(history3.location, history3.action);
-    }
-    function handlePopState(event) {
-      if (isExtraneousPopstateEvent(event))
-        return;
-      handlePop(getDOMLocation(event.state));
-    }
-    function handleHashChange() {
-      handlePop(getDOMLocation(getHistoryState()));
-    }
-    var forceNextPop = false;
-    function handlePop(location) {
-      if (forceNextPop) {
-        forceNextPop = false;
-        setState();
-      } else {
-        var action = "POP";
-        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
-          if (ok) {
-            setState({
-              action,
-              location
-            });
-          } else {
-            revertPop(location);
-          }
-        });
-      }
-    }
-    function revertPop(fromLocation) {
-      var toLocation = history3.location;
-      var toIndex = allKeys.indexOf(toLocation.key);
-      if (toIndex === -1)
-        toIndex = 0;
-      var fromIndex = allKeys.indexOf(fromLocation.key);
-      if (fromIndex === -1)
-        fromIndex = 0;
-      var delta = toIndex - fromIndex;
-      if (delta) {
-        forceNextPop = true;
-        go(delta);
-      }
-    }
-    var initialLocation = getDOMLocation(getHistoryState());
-    var allKeys = [initialLocation.key];
-    function createHref(location) {
-      return basename + createPath(location);
-    }
-    function push(path, state) {
-      tiny_warning_esm_default(!(typeof path === "object" && path.state !== void 0 && state !== void 0), "You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored");
-      var action = "PUSH";
-      var location = createLocation(path, state, createKey(), history3.location);
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
-        if (!ok)
-          return;
-        var href = createHref(location);
-        var key = location.key, state2 = location.state;
-        if (canUseHistory) {
-          globalHistory.pushState({
-            key,
-            state: state2
-          }, null, href);
-          if (forceRefresh) {
-            window.location.href = href;
-          } else {
-            var prevIndex = allKeys.indexOf(history3.location.key);
-            var nextKeys = allKeys.slice(0, prevIndex + 1);
-            nextKeys.push(location.key);
-            allKeys = nextKeys;
-            setState({
-              action,
-              location
-            });
-          }
-        } else {
-          tiny_warning_esm_default(state2 === void 0, "Browser history cannot push state in browsers that do not support HTML5 history");
-          window.location.href = href;
-        }
-      });
-    }
-    function replace(path, state) {
-      tiny_warning_esm_default(!(typeof path === "object" && path.state !== void 0 && state !== void 0), "You should avoid providing a 2nd state argument to replace when the 1st argument is a location-like object that already has state; it is ignored");
-      var action = "REPLACE";
-      var location = createLocation(path, state, createKey(), history3.location);
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
-        if (!ok)
-          return;
-        var href = createHref(location);
-        var key = location.key, state2 = location.state;
-        if (canUseHistory) {
-          globalHistory.replaceState({
-            key,
-            state: state2
-          }, null, href);
-          if (forceRefresh) {
-            window.location.replace(href);
-          } else {
-            var prevIndex = allKeys.indexOf(history3.location.key);
-            if (prevIndex !== -1)
-              allKeys[prevIndex] = location.key;
-            setState({
-              action,
-              location
-            });
-          }
-        } else {
-          tiny_warning_esm_default(state2 === void 0, "Browser history cannot replace state in browsers that do not support HTML5 history");
-          window.location.replace(href);
-        }
-      });
-    }
-    function go(n) {
-      globalHistory.go(n);
-    }
-    function goBack() {
-      go(-1);
-    }
-    function goForward() {
-      go(1);
-    }
-    var listenerCount = 0;
-    function checkDOMListeners(delta) {
-      listenerCount += delta;
-      if (listenerCount === 1 && delta === 1) {
-        window.addEventListener(PopStateEvent, handlePopState);
-        if (needsHashChangeListener)
-          window.addEventListener(HashChangeEvent, handleHashChange);
-      } else if (listenerCount === 0) {
-        window.removeEventListener(PopStateEvent, handlePopState);
-        if (needsHashChangeListener)
-          window.removeEventListener(HashChangeEvent, handleHashChange);
-      }
-    }
-    var isBlocked = false;
-    function block(prompt) {
-      if (prompt === void 0) {
-        prompt = false;
-      }
-      var unblock = transitionManager.setPrompt(prompt);
-      if (!isBlocked) {
-        checkDOMListeners(1);
-        isBlocked = true;
-      }
-      return function() {
-        if (isBlocked) {
-          isBlocked = false;
-          checkDOMListeners(-1);
-        }
-        return unblock();
-      };
-    }
-    function listen(listener) {
-      var unlisten = transitionManager.appendListener(listener);
-      checkDOMListeners(1);
-      return function() {
-        checkDOMListeners(-1);
-        unlisten();
-      };
-    }
-    var history3 = {
-      length: globalHistory.length,
-      action: "POP",
-      location: initialLocation,
-      createHref,
-      push,
-      replace,
-      go,
-      goBack,
-      goForward,
-      block,
-      listen
-    };
-    return history3;
-  }
-  var HashChangeEvent$1 = "hashchange";
-  var HashPathCoders = {
-    hashbang: {
-      encodePath: function encodePath(path) {
-        return path.charAt(0) === "!" ? path : "!/" + stripLeadingSlash(path);
-      },
-      decodePath: function decodePath(path) {
-        return path.charAt(0) === "!" ? path.substr(1) : path;
-      }
-    },
-    noslash: {
-      encodePath: stripLeadingSlash,
-      decodePath: addLeadingSlash
-    },
-    slash: {
-      encodePath: addLeadingSlash,
-      decodePath: addLeadingSlash
-    }
-  };
-  function stripHash(url) {
-    var hashIndex = url.indexOf("#");
-    return hashIndex === -1 ? url : url.slice(0, hashIndex);
-  }
-  function getHashPath() {
-    var href = window.location.href;
-    var hashIndex = href.indexOf("#");
-    return hashIndex === -1 ? "" : href.substring(hashIndex + 1);
-  }
-  function pushHashPath(path) {
-    window.location.hash = path;
-  }
-  function replaceHashPath(path) {
-    window.location.replace(stripHash(window.location.href) + "#" + path);
-  }
-  function createHashHistory(props) {
-    if (props === void 0) {
-      props = {};
-    }
-    !canUseDOM ? tiny_invariant_esm_default(false, "Hash history needs a DOM") : void 0;
-    var globalHistory = window.history;
-    var canGoWithoutReload = supportsGoWithoutReloadUsingHash();
-    var _props = props, _props$getUserConfirm = _props.getUserConfirmation, getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm, _props$hashType = _props.hashType, hashType = _props$hashType === void 0 ? "slash" : _props$hashType;
-    var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : "";
-    var _HashPathCoders$hashT = HashPathCoders[hashType], encodePath2 = _HashPathCoders$hashT.encodePath, decodePath2 = _HashPathCoders$hashT.decodePath;
-    function getDOMLocation() {
-      var path2 = decodePath2(getHashPath());
-      tiny_warning_esm_default(!basename || hasBasename(path2, basename), 'You are attempting to use a basename on a page whose URL path does not begin with the basename. Expected path "' + path2 + '" to begin with "' + basename + '".');
-      if (basename)
-        path2 = stripBasename(path2, basename);
-      return createLocation(path2);
-    }
-    var transitionManager = createTransitionManager();
-    function setState(nextState) {
-      _extends(history3, nextState);
-      history3.length = globalHistory.length;
-      transitionManager.notifyListeners(history3.location, history3.action);
-    }
-    var forceNextPop = false;
-    var ignorePath = null;
-    function locationsAreEqual$$1(a3, b3) {
-      return a3.pathname === b3.pathname && a3.search === b3.search && a3.hash === b3.hash;
-    }
-    function handleHashChange() {
-      var path2 = getHashPath();
-      var encodedPath2 = encodePath2(path2);
-      if (path2 !== encodedPath2) {
-        replaceHashPath(encodedPath2);
-      } else {
-        var location = getDOMLocation();
-        var prevLocation = history3.location;
-        if (!forceNextPop && locationsAreEqual$$1(prevLocation, location))
-          return;
-        if (ignorePath === createPath(location))
-          return;
-        ignorePath = null;
-        handlePop(location);
-      }
-    }
-    function handlePop(location) {
-      if (forceNextPop) {
-        forceNextPop = false;
-        setState();
-      } else {
-        var action = "POP";
-        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
-          if (ok) {
-            setState({
-              action,
-              location
-            });
-          } else {
-            revertPop(location);
-          }
-        });
-      }
-    }
-    function revertPop(fromLocation) {
-      var toLocation = history3.location;
-      var toIndex = allPaths.lastIndexOf(createPath(toLocation));
-      if (toIndex === -1)
-        toIndex = 0;
-      var fromIndex = allPaths.lastIndexOf(createPath(fromLocation));
-      if (fromIndex === -1)
-        fromIndex = 0;
-      var delta = toIndex - fromIndex;
-      if (delta) {
-        forceNextPop = true;
-        go(delta);
-      }
-    }
-    var path = getHashPath();
-    var encodedPath = encodePath2(path);
-    if (path !== encodedPath)
-      replaceHashPath(encodedPath);
-    var initialLocation = getDOMLocation();
-    var allPaths = [createPath(initialLocation)];
-    function createHref(location) {
-      var baseTag = document.querySelector("base");
-      var href = "";
-      if (baseTag && baseTag.getAttribute("href")) {
-        href = stripHash(window.location.href);
-      }
-      return href + "#" + encodePath2(basename + createPath(location));
-    }
-    function push(path2, state) {
-      tiny_warning_esm_default(state === void 0, "Hash history cannot push state; it is ignored");
-      var action = "PUSH";
-      var location = createLocation(path2, void 0, void 0, history3.location);
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
-        if (!ok)
-          return;
-        var path3 = createPath(location);
-        var encodedPath2 = encodePath2(basename + path3);
-        var hashChanged = getHashPath() !== encodedPath2;
-        if (hashChanged) {
-          ignorePath = path3;
-          pushHashPath(encodedPath2);
-          var prevIndex = allPaths.lastIndexOf(createPath(history3.location));
-          var nextPaths = allPaths.slice(0, prevIndex + 1);
-          nextPaths.push(path3);
-          allPaths = nextPaths;
-          setState({
-            action,
-            location
-          });
-        } else {
-          tiny_warning_esm_default(false, "Hash history cannot PUSH the same path; a new entry will not be added to the history stack");
-          setState();
-        }
-      });
-    }
-    function replace(path2, state) {
-      tiny_warning_esm_default(state === void 0, "Hash history cannot replace state; it is ignored");
-      var action = "REPLACE";
-      var location = createLocation(path2, void 0, void 0, history3.location);
-      transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
-        if (!ok)
-          return;
-        var path3 = createPath(location);
-        var encodedPath2 = encodePath2(basename + path3);
-        var hashChanged = getHashPath() !== encodedPath2;
-        if (hashChanged) {
-          ignorePath = path3;
-          replaceHashPath(encodedPath2);
-        }
-        var prevIndex = allPaths.indexOf(createPath(history3.location));
-        if (prevIndex !== -1)
-          allPaths[prevIndex] = path3;
-        setState({
-          action,
-          location
-        });
-      });
-    }
-    function go(n) {
-      tiny_warning_esm_default(canGoWithoutReload, "Hash history go(n) causes a full page reload in this browser");
-      globalHistory.go(n);
-    }
-    function goBack() {
-      go(-1);
-    }
-    function goForward() {
-      go(1);
-    }
-    var listenerCount = 0;
-    function checkDOMListeners(delta) {
-      listenerCount += delta;
-      if (listenerCount === 1 && delta === 1) {
-        window.addEventListener(HashChangeEvent$1, handleHashChange);
-      } else if (listenerCount === 0) {
-        window.removeEventListener(HashChangeEvent$1, handleHashChange);
-      }
-    }
-    var isBlocked = false;
-    function block(prompt) {
-      if (prompt === void 0) {
-        prompt = false;
-      }
-      var unblock = transitionManager.setPrompt(prompt);
-      if (!isBlocked) {
-        checkDOMListeners(1);
-        isBlocked = true;
-      }
-      return function() {
-        if (isBlocked) {
-          isBlocked = false;
-          checkDOMListeners(-1);
-        }
-        return unblock();
-      };
-    }
-    function listen(listener) {
-      var unlisten = transitionManager.appendListener(listener);
-      checkDOMListeners(1);
-      return function() {
-        checkDOMListeners(-1);
-        unlisten();
-      };
-    }
-    var history3 = {
-      length: globalHistory.length,
-      action: "POP",
-      location: initialLocation,
-      createHref,
-      push,
-      replace,
-      go,
-      goBack,
-      goForward,
-      block,
-      listen
-    };
-    return history3;
-  }
   function clamp(n, lowerBound, upperBound) {
     return Math.min(Math.max(n, lowerBound), upperBound);
   }
@@ -22432,9 +21956,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var _props = props, getUserConfirmation = _props.getUserConfirmation, _props$initialEntries = _props.initialEntries, initialEntries = _props$initialEntries === void 0 ? ["/"] : _props$initialEntries, _props$initialIndex = _props.initialIndex, initialIndex = _props$initialIndex === void 0 ? 0 : _props$initialIndex, _props$keyLength = _props.keyLength, keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;
     var transitionManager = createTransitionManager();
     function setState(nextState) {
-      _extends(history3, nextState);
-      history3.length = history3.entries.length;
-      transitionManager.notifyListeners(history3.location, history3.action);
+      _extends(history2, nextState);
+      history2.length = history2.entries.length;
+      transitionManager.notifyListeners(history2.location, history2.action);
     }
     function createKey() {
       return Math.random().toString(36).substr(2, keyLength);
@@ -22447,13 +21971,13 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     function push(path, state) {
       tiny_warning_esm_default(!(typeof path === "object" && path.state !== void 0 && state !== void 0), "You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored");
       var action = "PUSH";
-      var location = createLocation(path, state, createKey(), history3.location);
+      var location = createLocation(path, state, createKey(), history2.location);
       transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
         if (!ok)
           return;
-        var prevIndex = history3.index;
+        var prevIndex = history2.index;
         var nextIndex = prevIndex + 1;
-        var nextEntries = history3.entries.slice(0);
+        var nextEntries = history2.entries.slice(0);
         if (nextEntries.length > nextIndex) {
           nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
         } else {
@@ -22470,11 +21994,11 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     function replace(path, state) {
       tiny_warning_esm_default(!(typeof path === "object" && path.state !== void 0 && state !== void 0), "You should avoid providing a 2nd state argument to replace when the 1st argument is a location-like object that already has state; it is ignored");
       var action = "REPLACE";
-      var location = createLocation(path, state, createKey(), history3.location);
+      var location = createLocation(path, state, createKey(), history2.location);
       transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
         if (!ok)
           return;
-        history3.entries[history3.index] = location;
+        history2.entries[history2.index] = location;
         setState({
           action,
           location
@@ -22482,9 +22006,9 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       });
     }
     function go(n) {
-      var nextIndex = clamp(history3.index + n, 0, history3.entries.length - 1);
+      var nextIndex = clamp(history2.index + n, 0, history2.entries.length - 1);
       var action = "POP";
-      var location = history3.entries[nextIndex];
+      var location = history2.entries[nextIndex];
       transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
         if (ok) {
           setState({
@@ -22504,8 +22028,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       go(1);
     }
     function canGo(n) {
-      var nextIndex = history3.index + n;
-      return nextIndex >= 0 && nextIndex < history3.entries.length;
+      var nextIndex = history2.index + n;
+      return nextIndex >= 0 && nextIndex < history2.entries.length;
     }
     function block(prompt) {
       if (prompt === void 0) {
@@ -22516,7 +22040,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     function listen(listener) {
       return transitionManager.appendListener(listener);
     }
-    var history3 = {
+    var history2 = {
       length: entries.length,
       action: "POP",
       location: entries[index3],
@@ -22532,7 +22056,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       block,
       listen
     };
-    return history3;
+    return history2;
   }
 
   // node_modules/mini-create-react-context/dist/esm/index.js
@@ -22891,8 +22415,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     var computedMatch = _ref.computedMatch, to = _ref.to, _ref$push = _ref.push, push = _ref$push === void 0 ? false : _ref$push;
     return react2.default.createElement(context.Consumer, null, function(context2) {
       !context2 ? tiny_invariant_esm_default(false, "You should not use <Redirect> outside a <Router>") : void 0;
-      var history3 = context2.history, staticContext = context2.staticContext;
-      var method = push ? history3.push : history3.replace;
+      var history2 = context2.history, staticContext = context2.staticContext;
+      var method = push ? history2.push : history2.replace;
       var location = createLocation(computedMatch ? typeof to === "string" ? generatePath(to, computedMatch.params) : _extends({}, to, {
         pathname: generatePath(to.pathname, computedMatch.params)
       }) : to);
@@ -23042,20 +22566,20 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       tiny_warning_esm_default(!(!this.props.location && prevProps.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
     };
   }
-  function addLeadingSlash2(path) {
+  function addLeadingSlash(path) {
     return path.charAt(0) === "/" ? path : "/" + path;
   }
   function addBasename(basename, location) {
     if (!basename)
       return location;
     return _extends({}, location, {
-      pathname: addLeadingSlash2(basename) + location.pathname
+      pathname: addLeadingSlash(basename) + location.pathname
     });
   }
-  function stripBasename2(basename, location) {
+  function stripBasename(basename, location) {
     if (!basename)
       return location;
-    var base = addLeadingSlash2(basename);
+    var base = addLeadingSlash(basename);
     if (location.pathname.indexOf(base) !== 0)
       return location;
     return _extends({}, location, {
@@ -23103,12 +22627,12 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     };
     _proto.render = function render() {
       var _this$props2 = this.props, _this$props2$basename = _this$props2.basename, basename = _this$props2$basename === void 0 ? "" : _this$props2$basename, _this$props2$context = _this$props2.context, context2 = _this$props2$context === void 0 ? {} : _this$props2$context, _this$props2$location = _this$props2.location, location = _this$props2$location === void 0 ? "/" : _this$props2$location, rest = _objectWithoutPropertiesLoose(_this$props2, ["basename", "context", "location"]);
-      var history3 = {
+      var history2 = {
         createHref: function createHref(path) {
-          return addLeadingSlash2(basename + createURL(path));
+          return addLeadingSlash(basename + createURL(path));
         },
         action: "POP",
-        location: stripBasename2(basename, createLocation(location)),
+        location: stripBasename(basename, createLocation(location)),
         push: this.handlePush,
         replace: this.handleReplace,
         go: staticHandler("go"),
@@ -23118,7 +22642,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
         block: this.handleBlock
       };
       return react2.default.createElement(Router, _extends({}, rest, {
-        history: history3,
+        history: history2,
         staticContext: context2
       }));
     };
@@ -23197,256 +22721,48 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var initialBuildName;
   var secondaryBuildName;
 
-  // node_modules/react-router-dom/esm/react-router-dom.js
-  var react3 = __toModule(require_react());
-  var prop_types3 = __toModule(require_prop_types());
-  var BrowserRouter = /* @__PURE__ */ function(_React$Component) {
-    _inheritsLoose(BrowserRouter2, _React$Component);
-    function BrowserRouter2() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _this.history = createBrowserHistory(_this.props);
-      return _this;
-    }
-    var _proto = BrowserRouter2.prototype;
-    _proto.render = function render() {
-      return react3.default.createElement(Router, {
-        history: this.history,
-        children: this.props.children
-      });
-    };
-    return BrowserRouter2;
-  }(react3.default.Component);
-  if (true) {
-    BrowserRouter.propTypes = {
-      basename: prop_types3.default.string,
-      children: prop_types3.default.node,
-      forceRefresh: prop_types3.default.bool,
-      getUserConfirmation: prop_types3.default.func,
-      keyLength: prop_types3.default.number
-    };
-    BrowserRouter.prototype.componentDidMount = function() {
-      tiny_warning_esm_default(!this.props.history, "<BrowserRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { BrowserRouter as Router }`.");
-    };
-  }
-  var HashRouter = /* @__PURE__ */ function(_React$Component) {
-    _inheritsLoose(HashRouter2, _React$Component);
-    function HashRouter2() {
-      var _this;
-      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-        args[_key] = arguments[_key];
-      }
-      _this = _React$Component.call.apply(_React$Component, [this].concat(args)) || this;
-      _this.history = createHashHistory(_this.props);
-      return _this;
-    }
-    var _proto = HashRouter2.prototype;
-    _proto.render = function render() {
-      return react3.default.createElement(Router, {
-        history: this.history,
-        children: this.props.children
-      });
-    };
-    return HashRouter2;
-  }(react3.default.Component);
-  if (true) {
-    HashRouter.propTypes = {
-      basename: prop_types3.default.string,
-      children: prop_types3.default.node,
-      getUserConfirmation: prop_types3.default.func,
-      hashType: prop_types3.default.oneOf(["hashbang", "noslash", "slash"])
-    };
-    HashRouter.prototype.componentDidMount = function() {
-      tiny_warning_esm_default(!this.props.history, "<HashRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { HashRouter as Router }`.");
-    };
-  }
-  var resolveToLocation = function resolveToLocation2(to, currentLocation) {
-    return typeof to === "function" ? to(currentLocation) : to;
-  };
-  var normalizeToLocation = function normalizeToLocation2(to, currentLocation) {
-    return typeof to === "string" ? createLocation(to, null, null, currentLocation) : to;
-  };
-  var forwardRefShim = function forwardRefShim2(C) {
-    return C;
-  };
-  var forwardRef = react3.default.forwardRef;
-  if (typeof forwardRef === "undefined") {
-    forwardRef = forwardRefShim;
-  }
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-  var LinkAnchor = forwardRef(function(_ref, forwardedRef) {
-    var innerRef = _ref.innerRef, navigate = _ref.navigate, _onClick = _ref.onClick, rest = _objectWithoutPropertiesLoose(_ref, ["innerRef", "navigate", "onClick"]);
-    var target = rest.target;
-    var props = _extends({}, rest, {
-      onClick: function onClick(event) {
-        try {
-          if (_onClick)
-            _onClick(event);
-        } catch (ex) {
-          event.preventDefault();
-          throw ex;
-        }
-        if (!event.defaultPrevented && event.button === 0 && (!target || target === "_self") && !isModifiedEvent(event)) {
-          event.preventDefault();
-          navigate();
-        }
-      }
-    });
-    if (forwardRefShim !== forwardRef) {
-      props.ref = forwardedRef || innerRef;
-    } else {
-      props.ref = innerRef;
-    }
-    return react3.default.createElement("a", props);
-  });
-  if (true) {
-    LinkAnchor.displayName = "LinkAnchor";
-  }
-  var Link = forwardRef(function(_ref2, forwardedRef) {
-    var _ref2$component = _ref2.component, component = _ref2$component === void 0 ? LinkAnchor : _ref2$component, replace = _ref2.replace, to = _ref2.to, innerRef = _ref2.innerRef, rest = _objectWithoutPropertiesLoose(_ref2, ["component", "replace", "to", "innerRef"]);
-    return react3.default.createElement(context.Consumer, null, function(context2) {
-      !context2 ? tiny_invariant_esm_default(false, "You should not use <Link> outside a <Router>") : void 0;
-      var history3 = context2.history;
-      var location = normalizeToLocation(resolveToLocation(to, context2.location), context2.location);
-      var href = location ? history3.createHref(location) : "";
-      var props = _extends({}, rest, {
-        href,
-        navigate: function navigate() {
-          var location2 = resolveToLocation(to, context2.location);
-          var method = replace ? history3.replace : history3.push;
-          method(location2);
-        }
-      });
-      if (forwardRefShim !== forwardRef) {
-        props.ref = forwardedRef || innerRef;
-      } else {
-        props.innerRef = innerRef;
-      }
-      return react3.default.createElement(component, props);
-    });
-  });
-  if (true) {
-    toType = prop_types3.default.oneOfType([prop_types3.default.string, prop_types3.default.object, prop_types3.default.func]);
-    refType = prop_types3.default.oneOfType([prop_types3.default.string, prop_types3.default.func, prop_types3.default.shape({
-      current: prop_types3.default.any
-    })]);
-    Link.displayName = "Link";
-    Link.propTypes = {
-      innerRef: refType,
-      onClick: prop_types3.default.func,
-      replace: prop_types3.default.bool,
-      target: prop_types3.default.string,
-      to: toType.isRequired
-    };
-  }
-  var toType;
-  var refType;
-  var forwardRefShim$1 = function forwardRefShim3(C) {
-    return C;
-  };
-  var forwardRef$1 = react3.default.forwardRef;
-  if (typeof forwardRef$1 === "undefined") {
-    forwardRef$1 = forwardRefShim$1;
-  }
-  function joinClassnames() {
-    for (var _len = arguments.length, classnames = new Array(_len), _key = 0; _key < _len; _key++) {
-      classnames[_key] = arguments[_key];
-    }
-    return classnames.filter(function(i) {
-      return i;
-    }).join(" ");
-  }
-  var NavLink = forwardRef$1(function(_ref, forwardedRef) {
-    var _ref$ariaCurrent = _ref["aria-current"], ariaCurrent = _ref$ariaCurrent === void 0 ? "page" : _ref$ariaCurrent, _ref$activeClassName = _ref.activeClassName, activeClassName = _ref$activeClassName === void 0 ? "active" : _ref$activeClassName, activeStyle = _ref.activeStyle, classNameProp = _ref.className, exact = _ref.exact, isActiveProp = _ref.isActive, locationProp = _ref.location, sensitive = _ref.sensitive, strict = _ref.strict, styleProp = _ref.style, to = _ref.to, innerRef = _ref.innerRef, rest = _objectWithoutPropertiesLoose(_ref, ["aria-current", "activeClassName", "activeStyle", "className", "exact", "isActive", "location", "sensitive", "strict", "style", "to", "innerRef"]);
-    return react3.default.createElement(context.Consumer, null, function(context2) {
-      !context2 ? tiny_invariant_esm_default(false, "You should not use <NavLink> outside a <Router>") : void 0;
-      var currentLocation = locationProp || context2.location;
-      var toLocation = normalizeToLocation(resolveToLocation(to, currentLocation), currentLocation);
-      var path = toLocation.pathname;
-      var escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
-      var match = escapedPath ? matchPath(currentLocation.pathname, {
-        path: escapedPath,
-        exact,
-        sensitive,
-        strict
-      }) : null;
-      var isActive = !!(isActiveProp ? isActiveProp(match, currentLocation) : match);
-      var className = isActive ? joinClassnames(classNameProp, activeClassName) : classNameProp;
-      var style = isActive ? _extends({}, styleProp, {}, activeStyle) : styleProp;
-      var props = _extends({
-        "aria-current": isActive && ariaCurrent || null,
-        className,
-        style,
-        to: toLocation
-      }, rest);
-      if (forwardRefShim$1 !== forwardRef$1) {
-        props.ref = forwardedRef || innerRef;
-      } else {
-        props.innerRef = innerRef;
-      }
-      return react3.default.createElement(Link, props);
-    });
-  });
-  if (true) {
-    NavLink.displayName = "NavLink";
-    ariaCurrentType = prop_types3.default.oneOf(["page", "step", "location", "date", "time", "true"]);
-    NavLink.propTypes = _extends({}, Link.propTypes, {
-      "aria-current": ariaCurrentType,
-      activeClassName: prop_types3.default.string,
-      activeStyle: prop_types3.default.object,
-      className: prop_types3.default.string,
-      exact: prop_types3.default.bool,
-      isActive: prop_types3.default.func,
-      location: prop_types3.default.object,
-      sensitive: prop_types3.default.bool,
-      strict: prop_types3.default.bool,
-      style: prop_types3.default.object
-    });
-  }
-  var ariaCurrentType;
-
   // src/index.tsx
-  function HelloWorld() {
-    return /* @__PURE__ */ react4.default.createElement(react4.default.Fragment, null, /* @__PURE__ */ react4.default.createElement("div", {
+  function Nav() {
+    return /* @__PURE__ */ react3.default.createElement("div", {
       className: "hstack space-16 px-24 py-16"
-    }, /* @__PURE__ */ react4.default.createElement("div", {
-      className: "w-160 h-24 bg-gray-200 rounded-full"
-    }), /* @__PURE__ */ react4.default.createElement("div", {
-      className: "w-160 h-24 bg-red-200 rounded-full"
-    }), /* @__PURE__ */ react4.default.createElement("div", {
-      className: "w-160 h-24 bg-gray-200 rounded-full"
-    })), /* @__PURE__ */ react4.default.createElement("h1", null, "Hello from /"), /* @__PURE__ */ react4.default.createElement(Link, {
-      to: "/a"
-    }, "goto a"), /* @__PURE__ */ react4.default.createElement(Link, {
-      to: "/b"
-    }, "goto b"));
+    }, /* @__PURE__ */ react3.default.createElement("a", {
+      className: "group",
+      href: "/"
+    }, /* @__PURE__ */ react3.default.createElement("div", {
+      className: "hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition"
+    }, /* @__PURE__ */ react3.default.createElement("div", null, "React SSG"))), /* @__PURE__ */ react3.default.createElement("div", {
+      className: "spacer"
+    }), /* @__PURE__ */ react3.default.createElement("a", {
+      className: "group",
+      href: "/"
+    }, /* @__PURE__ */ react3.default.createElement("div", {
+      className: "hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition"
+    }, /* @__PURE__ */ react3.default.createElement("div", null, "Open /"))), /* @__PURE__ */ react3.default.createElement("a", {
+      className: "group",
+      href: "/a"
+    }, /* @__PURE__ */ react3.default.createElement("div", {
+      className: "hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition"
+    }, /* @__PURE__ */ react3.default.createElement("div", null, "Open /a"))), /* @__PURE__ */ react3.default.createElement("a", {
+      className: "group",
+      href: "/b"
+    }, /* @__PURE__ */ react3.default.createElement("div", {
+      className: "hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition"
+    }, /* @__PURE__ */ react3.default.createElement("div", null, "Open /b"))));
   }
-  function Index() {
-    return /* @__PURE__ */ react4.default.createElement(StaticRouter, null, /* @__PURE__ */ react4.default.createElement(Switch, null, /* @__PURE__ */ react4.default.createElement(Route, {
-      path: "/about"
-    }, /* @__PURE__ */ react4.default.createElement(A, null)), /* @__PURE__ */ react4.default.createElement(Route, {
-      path: "/users"
-    }, /* @__PURE__ */ react4.default.createElement(B, null)), /* @__PURE__ */ react4.default.createElement(Route, {
-      path: "/"
-    }, /* @__PURE__ */ react4.default.createElement(HelloWorld, null))));
+  function Index({location}) {
+    return /* @__PURE__ */ react3.default.createElement(StaticRouter, {
+      location
+    }, /* @__PURE__ */ react3.default.createElement(Nav, null), /* @__PURE__ */ react3.default.createElement(Switch, null, /* @__PURE__ */ react3.default.createElement(Route, {
+      path: "/a",
+      exact: true
+    }, /* @__PURE__ */ react3.default.createElement(A, null)), /* @__PURE__ */ react3.default.createElement(Route, {
+      path: "/b",
+      exact: true
+    }, /* @__PURE__ */ react3.default.createElement(B, null))));
   }
 
   // src/app.tsx
-  if (window.location.pathname === "/") {
-    console.log("matched path /");
-    ReactDOM.hydrate(/* @__PURE__ */ React7.createElement(Index, null), document.getElementById("root"));
-  } else if (window.location.pathname === "/a") {
-    console.log("matched path /a");
-    ReactDOM.hydrate(/* @__PURE__ */ React7.createElement(A, null), document.getElementById("root"));
-  } else if (window.location.pathname === "/b") {
-    console.log("matched path /b");
-    ReactDOM.hydrate(/* @__PURE__ */ React7.createElement(B, null), document.getElementById("root"));
-  } else {
-    throw new Error("app: no such route; cannot hydrate");
-  }
+  ReactDOM.hydrate(/* @__PURE__ */ React6.createElement(Index, {
+    location: window.location.pathname
+  }), document.getElementById("root"));
 })();

@@ -3,6 +3,7 @@ import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
 import routes from "./routes"
 
+// TODO: Extract to a compositional API.
 function Document({ route }: { route: React.ReactElement }) {
 	return (
 		<html lang="en">
@@ -10,7 +11,6 @@ function Document({ route }: { route: React.ReactElement }) {
 				<meta charSet="UTF-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>Document</title>
-				<link rel="stylesheet" href="https://unpkg.com/@zaydek/duomo@0.7.0-rc.31/dist/index.min.css" />
 				<link rel="stylesheet" href="style.css" />
 			</head>
 			<body>
@@ -21,11 +21,9 @@ function Document({ route }: { route: React.ReactElement }) {
 	)
 }
 
-function index(str: string) {
-	if (str === "/") {
-		return "index"
-	}
-	return str
+// Replaces `"/"` with `"index"`.
+function index(path: string) {
+	return path === "/" ? "index" : path
 }
 
 ;(() => {
