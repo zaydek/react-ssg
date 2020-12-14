@@ -23412,7 +23412,15 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
 
   // src/index.tsx
   function HelloWorld() {
-    return /* @__PURE__ */ react4.default.createElement(react4.default.Fragment, null, /* @__PURE__ */ react4.default.createElement("h1", null, "Hello from /"), /* @__PURE__ */ react4.default.createElement(Link, {
+    return /* @__PURE__ */ react4.default.createElement(react4.default.Fragment, null, /* @__PURE__ */ react4.default.createElement("div", {
+      className: "hstack space-16 px-24 py-16"
+    }, /* @__PURE__ */ react4.default.createElement("div", {
+      className: "w-160 h-24 bg-gray-200 rounded-full"
+    }), /* @__PURE__ */ react4.default.createElement("div", {
+      className: "w-160 h-24 bg-red-200 rounded-full"
+    }), /* @__PURE__ */ react4.default.createElement("div", {
+      className: "w-160 h-24 bg-gray-200 rounded-full"
+    })), /* @__PURE__ */ react4.default.createElement("h1", null, "Hello from /"), /* @__PURE__ */ react4.default.createElement(Link, {
       to: "/a"
     }, "goto a"), /* @__PURE__ */ react4.default.createElement(Link, {
       to: "/b"
