@@ -1,5 +1,5 @@
 import App from "./app"
-import * as React from "react"
+import React from "react"
 import type { IRoutes } from "../server/types"
 
 // TODO: Do we need this? Should this be in client or server?

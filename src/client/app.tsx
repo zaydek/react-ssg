@@ -1,6 +1,6 @@
-import * as React from "react"
 import A from "./a"
 import B from "./b"
+import React from "react"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {

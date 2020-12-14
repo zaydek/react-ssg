@@ -1,4 +1,4 @@
-import * as React from "react"
+import React from "react"
 
 // TODO: For all intents and purposes, this should be a pacakge-wide constant.
 // We don’t want to encourage the user to change this, so we probably want to
