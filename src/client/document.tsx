@@ -12,7 +12,7 @@ import React from "react"
 const SCRIPT_SRC = "script.js"
 
 interface DocumentProps {
-	route?: React.ReactElement
+	route: React.ReactNode
 }
 
 // `<Document>` is the entry point for all routes. All CDN-based CSS and JS
@@ -22,8 +22,6 @@ interface DocumentProps {
 //
 // <link rel="stylesheet" href="https://..." />
 // <script src="https://..." />
-//
-// Don’t worry about `<!DOCTYPE html>` -- __ssg.tsx generates that for you.
 //
 export default function Document({ route }: DocumentProps) {
 	return (

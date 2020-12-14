@@ -15,7 +15,7 @@ async function generateServerHTMLAsync(routes: IRoutes) {
 	Object.keys(routes).forEach(async key => {
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				<Document route={routes[key]} />
+				<Document route={routes[key].component} />
 			</StaticRouter>,
 		)}`
 		// TODO: Do we want to generate to public or somewhere else?
