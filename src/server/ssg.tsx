@@ -1,8 +1,8 @@
 import * as fs from "fs"
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
-import Document from "./document"
-import routes from "./routes"
+import Document from "../client/document"
+import routes from "../client/routes"
 import { StaticRouter } from "react-router-dom"
 
 function index(path: string) {

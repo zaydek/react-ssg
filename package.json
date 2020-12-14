@@ -3,7 +3,7 @@
 	"license": "MIT",
 	"scripts": {
 		"__force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
-		"__build-html": "ts-node --transpile-only src/__ssg.tsx",
+		"__build-html": "ts-node --transpile-only src/server/ssg.tsx",
 		"__build-js-dev": "NODE_ENV=development node esbuild.js",
 		"__build-js-prod": "NODE_ENV=production node esbuild.js",
 		"/* build-*: Builds static HTML and JS */": "",

@@ -6,6 +6,7 @@ interface IRoutes {
 	[key: string]: React.ReactElement
 }
 
+// TODO: Do we need this? Should this be in client or server?
 const routes: IRoutes = {
 	"/": <App /* location="/" */ />,
 	"/a": <App /* location="/a" */ />,
