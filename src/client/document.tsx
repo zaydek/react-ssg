@@ -10,10 +10,7 @@ import React from "react"
 // prepopulate `SCRIPT_SRC` for the user.
 //
 const SCRIPT_SRC = "script.js"
-
-interface DocumentProps {
-	route: React.ReactNode
-}
+const STYLE_HREF = "style.css"
 
 // `<Document>` is the entry point for all routes. All CDN-based CSS and JS
 // dependencies should be linked here.
@@ -23,7 +20,7 @@ interface DocumentProps {
 // <link rel="stylesheet" href="https://..." />
 // <script src="https://..." />
 //
-export default function Document({ route }: DocumentProps) {
+export default function Document({ route }: { route: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<head>
@@ -39,7 +36,7 @@ export default function Document({ route }: DocumentProps) {
 				{/* TODO: This assumes style.css never changes and or doesn’t support
 				other CSS files. If we use a compositional API this is basically a
 				solved problem. */}
-				<link rel="stylesheet" href="style.css" />
+				<link rel="stylesheet" href={STYLE_HREF} />
 			</head>
 			<body>
 				<noscript>You need to enable JavaScript to run this app.</noscript>

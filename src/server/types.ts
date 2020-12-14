@@ -1,12 +1,9 @@
-// import ReactRouter from "react-router-dom"
-//
-// export interface IRoutes {
-// 	[key: string]: ReactRouter.RouteProps
-// }
-
 export interface IRoute {
-	// TODO: Add support for props, async code.
+	// The React component to render: `Home` not `<Home>`.
 	component: React.ReactNode
+
+	// getStaticPropsSync:
+	// getStaticPropsAsync:
 }
 
 export interface IRoutes {

@@ -1,10 +1,11 @@
 import Document from "../client/document"
+import fs from "fs"
 import handle from "../utils/handle"
+import p from "fs/promises"
 import path from "path"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
 import routes from "../client/routes"
-import { promises as fs } from "fs"
 import { StaticRouter } from "react-router-dom"
 import type { IRoutes } from "./types"
 
@@ -18,29 +19,28 @@ async function generateServerHTMLAsync(routes: IRoutes) {
 				<Document route={routes[key].component} />
 			</StaticRouter>,
 		)}`
-		// TODO: Do we want to generate to public or somewhere else?
-		const [, writeErr] = await handle(fs.writeFile(`public/${key === "/" ? "index" : key}.html`, doc))
-		if (writeErr) {
-			throw new Error("generateServerHTMLAsync: an unexpected error occurred: " + writeErr)
-		}
+		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)
 	})
 }
 
 // Asynchronously generates CSS.
-async function generateServerCSSAsync(cssPath: string) {
-	const [, statErr] = await handle(fs.stat(cssPath))
-	if (statErr) {
+function generateServerCSS(cssPath: string) {
+	if (!fs.statSync(cssPath)) {
 		// No-op
 		return
 	}
 	const basename = path.basename(cssPath)
-	const [, copyErr] = await handle(fs.copyFile("src/client/style.css", `public/${basename}`))
-	if (copyErr) {
-		throw new Error("generateServerCSSAsync: an unexpected error occurred: " + copyErr)
-	}
+	fs.copyFileSync("src/client/style.css", `public/${basename}`)
 }
 
 ;(async () => {
-	await generateServerHTMLAsync(routes)
-	await generateServerCSSAsync("src/client/style.css")
+	if (!fs.existsSync("public")) {
+		fs.mkdirSync("public")
+	}
+	const [, err] = await handle(generateServerHTMLAsync(routes))
+	if (err) {
+		throw new Error("generateServerHTMLAsync: an unexpected error occurred: " + err)
+	}
+	// TODO: Add error checking?
+	generateServerCSS("src/client/style.css")
 })()
