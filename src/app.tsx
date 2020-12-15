@@ -1,6 +1,8 @@
 import A from "./a"
 import B from "./b"
+import DocumentTitle from "./lib/DocumentTitle"
 import React from "react"
+import routes from "./routes"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
@@ -39,16 +41,11 @@ export default function App() {
 		<div className="container vstack align-start space-64 px-32 py-24">
 			<Nav />
 			<Switch>
-				{/* {Object.entries(routes).map(([key, { component: Component, ...meta }]) => (
-					<Route key={key} path={key} {...meta}>
-						<Component />
-					</Route>
-				))} */}
 				<Route path="/a" exact>
-					<A greeting="TODO" />
+					<A />
 				</Route>
 				<Route path="/b" exact>
-					<B greeting="TODO" />
+					<B />
 				</Route>
 				<Route path="/">
 					<div>TODO</div>

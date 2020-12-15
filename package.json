@@ -10,8 +10,8 @@
 		"build-dev": "yarn __build-html && yarn __build-js-dev && yarn __force-refresh",
 		"build-prod": "yarn __build-html && yarn __build-js-prod && yarn __force-refresh",
 		"/* watch-*: Continuously builds static HTML and JS */": "",
-		"watch-dev": "yarn watch --interval 0.1 'yarn build-dev' src",
-		"watch-prod": "yarn watch --interval 0.1 'yarn build-prod' src"
+		"watch-dev": "yarn watch --interval 0.5 'yarn build-dev' src",
+		"watch-prod": "yarn watch --interval 0.5 'yarn build-prod' src"
 	},
 	"dependencies": {
 		"react": "^17.0.1",

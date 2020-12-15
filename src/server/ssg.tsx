@@ -1,12 +1,11 @@
-import App from "../client/app"
-import Document from "../client/document"
+import Document from "./document"
 import fs from "fs"
 import handle from "../utils/handle"
 import p from "fs/promises"
 import path from "path"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
-import routes from "../client/routes"
+import routes from "../routes"
 import { StaticRouter } from "react-router-dom"
 import type { IRoutes } from "./types"
 
@@ -15,13 +14,9 @@ import type { IRoutes } from "./types"
 // TODO: Add support for `Promise.all`?
 async function generateServerHTMLAsync(routes: IRoutes) {
 	Object.keys(routes).forEach(async key => {
-		let routeProps = undefined
-		if (routes[key].getProps) {
-			routeProps = routes[key].getProps!() // FIXME?
-		}
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				<Document route={<App {...routeProps} />} />
+				<Document route={routes[key]} />
 			</StaticRouter>,
 		)}`
 		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)
@@ -36,10 +31,9 @@ function generateServerCSS(cssPath: string) {
 		// No-op
 		return
 	}
+	// TODO: Error handling.
 	const basename = path.basename(cssPath)
-
-	// TODO: Check `copyFileSync` error? How?
-	fs.copyFileSync("src/client/style.css", `public/${basename}`)
+	fs.copyFileSync("src/style.css", `public/${basename}`)
 }
 
 ;(async () => {
@@ -50,6 +44,6 @@ function generateServerCSS(cssPath: string) {
 	if (err) {
 		throw new Error("generateServerHTMLAsync: an unexpected error occurred: " + err)
 	}
-	// TODO: Add error checking?
-	generateServerCSS("src/client/style.css")
+	// TODO: Error handling.
+	generateServerCSS("src/style.css")
 })()
