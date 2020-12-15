@@ -31,18 +31,25 @@ function Nav() {
 	)
 }
 
+interface AppProps {
+	greeting: string
+}
+
 // TODO: We should be able to compose routing based on a static data structure.
 // Whether this is ideal or not I don’t know.
-export default function Index(/* { location }: { location?: string | object | undefined } */) {
+export default function App(props: AppProps) {
 	return (
 		<div className="container vstack align-start space-64 px-32 py-24">
 			<Nav />
 			<Switch>
 				<Route path="/a" exact>
-					<A />
+					<A {...props} />
 				</Route>
 				<Route path="/b" exact>
-					<B />
+					<B {...props} />
+				</Route>
+				<Route path="/">
+					<div>{props.greeting}</div>
 				</Route>
 			</Switch>
 		</div>

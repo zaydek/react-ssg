@@ -15,9 +15,22 @@ import type { IRoutes } from "./types"
 async function generateServerHTMLAsync(routes: IRoutes) {
 	Object.keys(routes).forEach(async key => {
 		const Route = routes[key].component
+
+		// FIXME: Why do we need to use `getProps!`?
+		let routeProps = undefined
+		if (routes[key].getProps) {
+			routeProps = routes[key].getProps!()
+		}
+
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				<Document route={typeof Route === "function" ? <Route /> : Route} />
+				{/* prettier-ignore */}
+				<Document route={
+					typeof Route === "function"
+						? <Route {...routeProps} />
+						: Route
+					}
+				/>
 			</StaticRouter>,
 		)}`
 		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)

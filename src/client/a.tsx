@@ -1,8 +1,8 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { Link } from "react-router-dom"
 
-export default function A() {
-	React.useEffect(() => {
+export default function A({ greeting }: { greeting: string }) {
+	useEffect(() => {
 		console.log("hello from a")
 		const id = setInterval(() => {
 			console.log("hello from a interval")
@@ -15,7 +15,7 @@ export default function A() {
 	return (
 		<div className="vstack align-start space-16">
 			<div className="hstack align-self-start w-160 h-32 bg-gray-200 rounded-full">
-				<div>This is page /a</div>
+				<div>This is page /a ({greeting})</div>
 			</div>
 			<Link className="group" to="/b">
 				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">

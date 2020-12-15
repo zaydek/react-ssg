@@ -5,18 +5,31 @@ import type { IRoutes } from "../server/types"
 const routes: IRoutes = {
 	"/": {
 		component: App,
-		// TODO
+		exact: true,
+		getProps() {
+			return {
+				greeting: "Hello, world! (/)",
+			}
+		},
 	},
 	"/a": {
 		component: App,
-		// TODO
+		exact: true,
+		getProps() {
+			return {
+				greeting: "Hello, world! (/a)",
+			}
+		},
 	},
 	"/b": {
 		component: App,
-		// TODO
+		exact: true,
+		getProps() {
+			return {
+				greeting: "Hello, world! (/b)",
+			}
+		},
 	},
 }
-
-// console.log(typeof App)
 
 export default routes

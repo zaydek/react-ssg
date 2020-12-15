@@ -1,6 +1,7 @@
 import App from "./app"
 import React from "react"
 import ReactDOM from "react-dom"
+import routes from "./routes"
 import { BrowserRouter } from "react-router-dom"
 
 // This is the entry point for esbuild. This file compiles down to
@@ -14,9 +15,13 @@ import { BrowserRouter } from "react-router-dom"
 // - Routing
 // - CSS
 //
-ReactDOM.hydrate(
-	<BrowserRouter>
-		<App />
-	</BrowserRouter>,
-	document.getElementById("root"),
-)
+;(() => {
+	// FIXME
+	const appProps = routes[window.location.pathname].getProps!()
+	ReactDOM.hydrate(
+		<BrowserRouter>
+			<App {...appProps} />
+		</BrowserRouter>,
+		document.getElementById("root"),
+	)
+})()
