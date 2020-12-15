@@ -17,7 +17,7 @@ async function generateServerHTMLAsync(routes: IRoutes) {
 		const Route = routes[key].component
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				<Document route={<Route />} />
+				<Document route={typeof Route === "function" ? <Route /> : Route} />
 			</StaticRouter>,
 		)}`
 		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)
