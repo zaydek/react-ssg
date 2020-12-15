@@ -1,11 +1,12 @@
 import React, { useEffect } from "react"
 
-interface DocumentTitleProps {
+interface Title {
 	title: string
 	children?: React.ReactNode
 }
 
-export default function DocumentTitle({ title, children }: DocumentTitleProps) {
+// `<Title>` is a composable side-effect for mounting and unmounting `document.title`.
+export default function Title({ title, children }: Title) {
 	useEffect(() => {
 		const originalTitle = document.title
 		document.title = title

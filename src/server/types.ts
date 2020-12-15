@@ -1,5 +1,5 @@
 export interface IRoute {
-	title: string
+	title: null | string
 }
 
 export interface IRoutes {

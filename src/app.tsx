@@ -1,8 +1,8 @@
 import A from "./a"
 import B from "./b"
-import DocumentTitle from "./lib/DocumentTitle"
+import C from "./c"
 import React from "react"
-import routes from "./routes"
+import Title from "./lib/Title"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
@@ -29,6 +29,20 @@ function Nav() {
 					<div>Open /b</div>
 				</div>
 			</Link>
+			<Link className="group" to="/c">
+				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
+					<div>Open /c</div>
+				</div>
+			</Link>
+		</div>
+	)
+}
+
+function Container({ children }: { children?: React.ReactNode }) {
+	return (
+		<div className="container vstack align-start space-64 px-32 py-24">
+			<Nav />
+			{children}
 		</div>
 	)
 }
@@ -38,19 +52,40 @@ function Nav() {
 // TODO: Is there a way to extract routes from JSX?
 export default function App() {
 	return (
-		<div className="container vstack align-start space-64 px-32 py-24">
-			<Nav />
-			<Switch>
-				<Route path="/a" exact>
-					<A />
-				</Route>
-				<Route path="/b" exact>
-					<B />
-				</Route>
-				<Route path="/">
-					<div>TODO</div>
-				</Route>
-			</Switch>
-		</div>
+		<Switch>
+			{/* 200 */}
+			<Route path="/" exact>
+				<Container>
+					<Title title="Hello, world!">
+						<div>Hello, world!</div>
+					</Title>
+				</Container>
+			</Route>
+			<Route path="/a" exact>
+				<Container>
+					<Title title="Page A">
+						<A />
+					</Title>
+				</Container>
+			</Route>
+			<Route path="/b" exact>
+				<Container>
+					<Title title="Page B">
+						<B />
+					</Title>
+				</Container>
+			</Route>
+			<Route path="/c" exact>
+				<Container>
+					<Title title="Page C">
+						<C />
+					</Title>
+				</Container>
+			</Route>
+			{/* 404 */}
+			<Route path="/404" exact>
+				{/* No-op */}
+			</Route>
+		</Switch>
 	)
 }
