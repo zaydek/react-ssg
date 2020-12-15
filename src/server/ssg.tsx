@@ -14,16 +14,19 @@ import type { IRoutes } from "./types"
 // TODO: Add support for `Promise.all`?
 async function generateServerHTMLAsync(routes: IRoutes) {
 	Object.keys(routes).forEach(async key => {
+		const Route = routes[key].component
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				<Document route={routes[key].component} />
+				<Document route={<Route />} />
 			</StaticRouter>,
 		)}`
 		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)
 	})
 }
 
-// Asynchronously generates CSS.
+// Generates CSS.
+//
+// TODO: Add support for stylesheets pattern?
 function generateServerCSS(cssPath: string) {
 	if (!fs.statSync(cssPath)) {
 		// No-op

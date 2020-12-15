@@ -1,9 +1,6 @@
 export interface IRoute {
-	// The React component to render: `Home` not `<Home>`.
-	component: React.ReactNode
-
-	// getStaticPropsSync:
-	// getStaticPropsAsync:
+	component: () => JSX.Element
+	// TODO
 }
 
 export interface IRoutes {
