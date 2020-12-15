@@ -1,7 +1,6 @@
 import A from "./a"
 import B from "./b"
 import React from "react"
-import routes from "./routes"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
@@ -34,17 +33,18 @@ function Nav() {
 
 // TODO: We should be able to compose routing based on a static data structure.
 // Whether this is ideal or not I don’t know.
+// TODO: Is there a way to extract routes from JSX?
 export default function App() {
 	return (
 		<div className="container vstack align-start space-64 px-32 py-24">
 			<Nav />
 			<Switch>
-				{Object.entries(routes).map(([key, { component: Component, ...meta }]) => (
+				{/* {Object.entries(routes).map(([key, { component: Component, ...meta }]) => (
 					<Route key={key} path={key} {...meta}>
 						<Component />
 					</Route>
-				))}
-				{/* <Route path="/a" exact>
+				))} */}
+				<Route path="/a" exact>
 					<A greeting="TODO" />
 				</Route>
 				<Route path="/b" exact>
@@ -52,7 +52,7 @@ export default function App() {
 				</Route>
 				<Route path="/">
 					<div>TODO</div>
-				</Route> */}
+				</Route>
 			</Switch>
 		</div>
 	)

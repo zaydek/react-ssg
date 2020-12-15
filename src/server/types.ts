@@ -11,9 +11,11 @@
 // }
 
 export interface IRoute {
-	// path: string
-	component: () => JSX.Element
-	exact: boolean
+	// // The React component to render: `Component` or `<Component>`.
+	// component: React.ReactNode | (() => JSX.Element)
+
+	// Synchronous or asynchronous props-getter.
+	getProps?: () => any
 }
 
 export interface IRoutes {

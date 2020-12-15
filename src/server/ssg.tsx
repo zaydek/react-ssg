@@ -1,3 +1,6 @@
+// TODO
+import App from "../client/app"
+
 import Document from "../client/document"
 import fs from "fs"
 import handle from "../utils/handle"
@@ -14,23 +17,13 @@ import type { IRoutes } from "./types"
 // TODO: Add support for `Promise.all`?
 async function generateServerHTMLAsync(routes: IRoutes) {
 	Object.keys(routes).forEach(async key => {
-		const Route = routes[key].component
-
-		// FIXME: Why do we need to use `getProps!`?
 		let routeProps = undefined
 		if (routes[key].getProps) {
-			routeProps = routes[key].getProps!()
+			routeProps = routes[key].getProps!() // FIXME?
 		}
-
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				{/* prettier-ignore */}
-				<Document route={
-					typeof Route === "function"
-						? <Route {...routeProps} />
-						: Route
-					}
-				/>
+				<Document route={<App {...routeProps} />} />
 			</StaticRouter>,
 		)}`
 		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)
@@ -46,6 +39,8 @@ function generateServerCSS(cssPath: string) {
 		return
 	}
 	const basename = path.basename(cssPath)
+
+	// TODO: Check `copyFileSync` error? How?
 	fs.copyFileSync("src/client/style.css", `public/${basename}`)
 }
 

@@ -1,7 +1,6 @@
 import App from "./app"
 import React from "react"
 import ReactDOM from "react-dom"
-import routes from "./routes"
 import { BrowserRouter } from "react-router-dom"
 
 // This is the entry point for esbuild. This file compiles down to
