@@ -1,6 +1,4 @@
-// TODO
 import App from "../client/app"
-
 import Document from "../client/document"
 import fs from "fs"
 import handle from "../utils/handle"
