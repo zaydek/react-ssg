@@ -1,6 +1,7 @@
 import A from "./a"
 import B from "./b"
 import React from "react"
+import routes from "./routes"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
@@ -31,26 +32,27 @@ function Nav() {
 	)
 }
 
-interface AppProps {
-	greeting: string
-}
-
 // TODO: We should be able to compose routing based on a static data structure.
 // Whether this is ideal or not I don’t know.
-export default function App(props: AppProps) {
+export default function App() {
 	return (
 		<div className="container vstack align-start space-64 px-32 py-24">
 			<Nav />
 			<Switch>
-				<Route path="/a" exact>
-					<A {...props} />
+				{Object.entries(routes).map(([key, { component: Component, ...meta }]) => (
+					<Route key={key} path={key} {...meta}>
+						<Component />
+					</Route>
+				))}
+				{/* <Route path="/a" exact>
+					<A greeting="TODO" />
 				</Route>
 				<Route path="/b" exact>
-					<B {...props} />
+					<B greeting="TODO" />
 				</Route>
 				<Route path="/">
-					<div>{props.greeting}</div>
-				</Route>
+					<div>TODO</div>
+				</Route> */}
 			</Switch>
 		</div>
 	)

@@ -16,11 +16,9 @@ import { BrowserRouter } from "react-router-dom"
 // - CSS
 //
 ;(() => {
-	// FIXME
-	const appProps = routes[window.location.pathname].getProps!()
 	ReactDOM.hydrate(
 		<BrowserRouter>
-			<App {...appProps} />
+			<App />
 		</BrowserRouter>,
 		document.getElementById("root"),
 	)
