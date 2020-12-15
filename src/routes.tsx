@@ -11,7 +11,4 @@ export default {
 	"/b": {
 		title: "Page B",
 	},
-	"/404": {
-		title: null,
-	},
 } as IRoutes

@@ -13,10 +13,14 @@ import type { IRoutes } from "./types"
 //
 // TODO: Add support for `Promise.all`?
 async function generateServerHTMLAsync(routes: IRoutes) {
-	Object.keys(routes).forEach(async key => {
+	const modRoutes: IRoutes = {
+		...routes,
+		"/404": null,
+	}
+	Object.keys(modRoutes).forEach(async key => {
 		const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 			<StaticRouter location={key}>
-				<Document route={routes[key]} />
+				<Document route={modRoutes[key]} />
 			</StaticRouter>,
 		)}`
 		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)

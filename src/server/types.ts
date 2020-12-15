@@ -1,5 +1,9 @@
-export interface IRoute {
-	title: null | string
+// export interface IRoute {
+// 	title: string
+// }
+
+export type IRoute = null | {
+	title: string
 }
 
 export interface IRoutes {

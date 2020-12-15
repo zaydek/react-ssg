@@ -83,8 +83,8 @@ export default function App() {
 				</Container>
 			</Route>
 			{/* 404 */}
-			<Route path="/404" exact>
-				{/* No-op */}
+			<Route path="/">
+				<div>TODO</div>
 			</Route>
 		</Switch>
 	)

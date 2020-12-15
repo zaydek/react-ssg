@@ -10,7 +10,7 @@ export default function Document({ route }: { route: IRoute }) {
 				<link rel="icon" href="favicon.ico" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="description" content="Web site created using create-react-app" />
-				<title>{route.title}</title>
+				<title>{route && route.title}</title>
 				<link rel="stylesheet" href="/style.css" />
 			</head>
 			<body>
