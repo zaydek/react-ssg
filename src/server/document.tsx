@@ -11,7 +11,7 @@ export default function Document({ route }: { route: IRoute }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="description" content="Web site created using create-react-app" />
 				<title>{route && route.title}</title>
-				<link rel="stylesheet" href="/style.css" />
+				<link rel="stylesheet" href="/public/style.css" />
 			</head>
 			<body>
 				<noscript>You need to enable JavaScript to run this app.</noscript>

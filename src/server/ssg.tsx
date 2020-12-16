@@ -2,10 +2,10 @@ import Document from "./document"
 import fs from "fs"
 import handle from "../utils/handle"
 import p from "fs/promises"
-import path from "path"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
 import routes from "../routes"
+import { execSync } from "child_process"
 import { StaticRouter } from "react-router-dom"
 import type { IRoutes } from "./types"
 
@@ -23,31 +23,24 @@ async function generateServerHTMLAsync(routes: IRoutes) {
 				<Document route={modRoutes[key]} />
 			</StaticRouter>,
 		)}`
-		return p.writeFile(`public/${key === "/" ? "index" : key}.html`, doc)
+		return p.writeFile(`dist/${key === "/" ? "index" : key}.html`, doc)
 	})
 }
 
-// Generates CSS.
-//
-// TODO: Add support for stylesheets pattern?
-function generateServerCSS(cssPath: string) {
-	if (!fs.statSync(cssPath)) {
-		// No-op
-		return
+function copyPublicToDist() {
+	const res = execSync(`cp -r public dist`).toString()
+	if (res) {
+		throw new Error("copyPublicToDist: an unexpected error occurred: " + res)
 	}
-	// TODO: Error handling.
-	const basename = path.basename(cssPath)
-	fs.copyFileSync("src/style.css", `public/${basename}`)
 }
 
 ;(async () => {
-	if (!fs.existsSync("public")) {
-		fs.mkdirSync("public")
+	if (!fs.existsSync("dist")) {
+		fs.mkdirSync("dist")
 	}
 	const [, err] = await handle(generateServerHTMLAsync(routes))
 	if (err) {
 		throw new Error("generateServerHTMLAsync: an unexpected error occurred: " + err)
 	}
-	// TODO: Error handling.
-	generateServerCSS("src/style.css")
+	copyPublicToDist()
 })()

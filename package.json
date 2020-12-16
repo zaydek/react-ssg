@@ -2,16 +2,13 @@
 	"name": "react-ssg",
 	"license": "MIT",
 	"scripts": {
-		"__force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
-		"__build-html": "ts-node --transpile-only src/server/ssg.tsx",
-		"__build-js-dev": "NODE_ENV=development node esbuild.js",
-		"__build-js-prod": "NODE_ENV=production node esbuild.js",
-		"/* build-*: Builds static HTML and JS */": "",
-		"build-dev": "yarn __build-html && yarn __build-js-dev && yarn __force-refresh",
-		"build-prod": "yarn __build-html && yarn __build-js-prod && yarn __force-refresh",
-		"/* watch-*: Continuously builds static HTML and JS */": "",
+		"force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
+		"prerender": "ts-node --transpile-only src/server/ssg.tsx",
+		"build-dev": "NODE_ENV=development yarn prerender && node esbuild.js && yarn force-refresh",
+		"build-prod": "NODE_ENV=production yarn prerender && node esbuild.js && yarn force-refresh",
 		"watch-dev": "yarn watch --interval 0.5 'yarn build-dev' src",
-		"watch-prod": "yarn watch --interval 0.5 'yarn build-prod' src"
+		"watch-prod": "yarn watch --interval 0.5 'yarn build-prod' src",
+		"serve": "yarn http-server dist --brotli"
 	},
 	"dependencies": {
 		"react": "^17.0.1",
