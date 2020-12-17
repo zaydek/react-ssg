@@ -1,10 +1,10 @@
-// TODO: Change to numbers.
 function isAlpha(ch: string) {
+	// TODO: Change to numbers.
 	return (ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z")
 }
 
-// TODO: Change to numbers.
 function isNumber(ch: string) {
+	// TODO: Change to numbers.
 	return ch >= "0" && ch <= "9"
 }
 

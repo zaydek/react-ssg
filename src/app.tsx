@@ -47,9 +47,6 @@ function Wrapper({ children }: { children?: React.ReactNode }) {
 	)
 }
 
-// TODO: We should be able to compose routing based on a static data structure.
-// Whether this is ideal or not I don’t know.
-// TODO: Is there a way to extract routes from JSX?
 export default function App() {
 	return (
 		<Switch>

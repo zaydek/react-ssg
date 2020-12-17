@@ -1,6 +1,5 @@
 @import "https://unpkg.com/@zaydek/duomo@0.7.0/dist/production-full.css";
 
-/* TODO: Extract style.css (or stylesheets?) to src. */
 :root {
 	--transition-duration-default: 100ms;
 }
