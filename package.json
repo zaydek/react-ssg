@@ -6,8 +6,8 @@
 		"prerender": "ts-node --transpile-only src/server/ssg.tsx",
 		"build-dev": "NODE_ENV=development yarn prerender && node esbuild.js && yarn force-refresh",
 		"build-prod": "NODE_ENV=production yarn prerender && node esbuild.js && yarn force-refresh",
-		"watch-dev": "yarn watch --interval 0.5 'yarn build-dev' src",
-		"watch-prod": "yarn watch --interval 0.5 'yarn build-prod' src",
+		"watch-dev": "yarn watch --interval 0.1 'yarn build-dev' src",
+		"watch-prod": "yarn watch --interval 0.1 'yarn build-prod' src",
 		"serve": "yarn http-server dist --brotli"
 	},
 	"dependencies": {

@@ -1,8 +1,8 @@
-import A from "./a"
-import B from "./b"
-import C from "./c"
+import A from "./A"
+import B from "./B"
+import C from "./C"
 import React from "react"
-import Title from "./lib/Title"
+import DocumentTitle from "./lib/DocumentTitle"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
@@ -38,7 +38,7 @@ function Nav() {
 	)
 }
 
-function Container({ children }: { children?: React.ReactNode }) {
+function Wrapper({ children }: { children?: React.ReactNode }) {
 	return (
 		<div className="container vstack align-start space-64 px-32 py-24">
 			<Nav />
@@ -55,32 +55,32 @@ export default function App() {
 		<Switch>
 			{/* 200 */}
 			<Route path="/" exact>
-				<Container>
-					<Title title="Hello, world!">
+				<DocumentTitle title="Page /">
+					<Wrapper>
 						<div>Hello, world!</div>
-					</Title>
-				</Container>
+					</Wrapper>
+				</DocumentTitle>
 			</Route>
 			<Route path="/a" exact>
-				<Container>
-					<Title title="Page A">
+				<DocumentTitle title="Page /a">
+					<Wrapper>
 						<A />
-					</Title>
-				</Container>
+					</Wrapper>
+				</DocumentTitle>
 			</Route>
 			<Route path="/b" exact>
-				<Container>
-					<Title title="Page B">
+				<DocumentTitle title="Page /b">
+					<Wrapper>
 						<B />
-					</Title>
-				</Container>
+					</Wrapper>
+				</DocumentTitle>
 			</Route>
 			<Route path="/c" exact>
-				<Container>
-					<Title title="Page C">
+				<DocumentTitle title="Page /c">
+					<Wrapper>
 						<C />
-					</Title>
-				</Container>
+					</Wrapper>
+				</DocumentTitle>
 			</Route>
 			{/* 404 */}
 			<Route path="/">

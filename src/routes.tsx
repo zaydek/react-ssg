@@ -1,14 +1,33 @@
+import React from "react"
 import type { IRoutes } from "./server/types"
 
-// These are the prerendered routes.
 export default {
-	"/": {
-		title: "Hello, world!",
-	},
-	"/a": {
-		title: "Page A",
-	},
-	"/b": {
-		title: "Page B",
-	},
+	"/": (
+		<>
+			{/* <link rel="icon" href="favicon.ico" /> */}
+			<title>Hello, world!</title>
+			<meta name="description" content="Web site created using create-react-app" />
+		</>
+	),
+	"/a": (
+		<>
+			{/* <link rel="icon" href="favicon.ico" /> */}
+			<title>Page A</title>
+			<meta name="description" content="Web site created using create-react-app" />
+		</>
+	),
+	"/b": (
+		<>
+			{/* <link rel="icon" href="favicon.ico" /> */}
+			<title>Page B</title>
+			<meta name="description" content="Web site created using create-react-app" />
+		</>
+	),
+	"/seo": (
+		<>
+			{/* <link rel="icon" href="favicon.ico" /> */}
+			<title>SEO</title>
+			<meta name="description" content="Web site created using create-react-app" />
+		</>
+	),
 } as IRoutes
