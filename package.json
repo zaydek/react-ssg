@@ -3,11 +3,12 @@
 	"license": "MIT",
 	"scripts": {
 		"force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
-		"test": "jest",
 		"prerender-html": "ts-node --transpile-only src/server/ssg.tsx",
-		"prerender-css": "yarn sass --no-charset --no-source-map --style=compressed src/style.sass public/style.css",
-		"build-dev": "NODE_ENV=development yarn prerender-html && node esbuild.js && yarn force-refresh",
-		"build-prod": "NODE_ENV=production yarn prerender-html && node esbuild.js && yarn force-refresh",
+		"prerender-css": "sass --no-charset --no-source-map --style=compressed src/style.sass public/style.css",
+		"prerender-js": "node esbuild.js",
+		"test": "jest",
+		"build-dev": "NODE_ENV=development yarn prerender-html && yarn prerender-css && yarn prerender-js && yarn force-refresh",
+		"build-prod": "NODE_ENV=production yarn prerender-html && yarn prerender-css && yarn prerender-js && yarn force-refresh",
 		"watch-dev": "yarn watch --interval 0.1 'yarn build-dev' src",
 		"watch-prod": "yarn watch --interval 0.1 'yarn build-prod' src",
 		"serve": "yarn http-server dist --brotli"
