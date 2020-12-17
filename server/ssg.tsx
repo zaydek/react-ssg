@@ -27,6 +27,7 @@ async function generateServerHTMLAsync(routes: IRoutes) {
 	})
 }
 
+// TODO: Add Sass.
 function copyPublicToDist() {
 	const res = execSync(`cp -r public dist`).toString()
 	if (res) {
