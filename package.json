@@ -4,11 +4,12 @@
 	"scripts": {
 		"force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
 		"prerender-html": "ts-node --transpile-only src/server/ssg.tsx",
-		"prerender-css": "sass --no-charset --no-source-map --style=compressed src/style.scss public/style.css",
-		"prerender-js": "node esbuild.js",
+		"prerender-css": "sass --no-charset --no-source-map --style=compressed src/style.scss dist/style.css",
+		"prerender-js-dev": "NODE_ENV=development node esbuild.js",
+		"prerender-js-prod": "NODE_ENV=production node esbuild.js",
 		"test": "jest",
-		"build-dev": "NODE_ENV=development yarn prerender-html && yarn prerender-js && yarn force-refresh",
-		"build-prod": "NODE_ENV=production yarn prerender-html && yarn prerender-js && yarn force-refresh",
+		"build-dev": "yarn prerender-html && yarn prerender-js-dev && yarn force-refresh",
+		"build-prod": "yarn prerender-html && yarn prerender-js-prod && yarn force-refresh",
 		"watch-dev": "nodemon --watch src --exec 'yarn build-dev' --ext ts,tsx",
 		"watch-prod": "nodemon --watch src --exec 'yarn build-prod' --ext ts,tsx",
 		"serve": "yarn http-server dist --brotli"

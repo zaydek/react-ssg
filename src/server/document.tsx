@@ -8,7 +8,7 @@ export default function Document({ metadata }: { metadata: React.ReactNode }) {
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				{metadata}
-				<link rel="stylesheet" href="/public/style.css" />
+				<link rel="stylesheet" href="/style.css" />
 			</head>
 			<body>
 				<noscript>You need to enable JavaScript to run this app.</noscript>
