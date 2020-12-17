@@ -1,6 +1,7 @@
 export { default as disableAutoCorrect } from "./disableAutoCorrect"
 export { default as DocumentTitle } from "./DocumentTitle"
 export { default as ExtAnchor } from "./ExtAnchor"
+export { default as handle } from "./handle"
 export { default as LayoutDocumentTitle } from "./DocumentTitle"
 export { default as range } from "./range"
 export { default as target_blank } from "./target_blank"

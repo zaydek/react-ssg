@@ -1,0 +1,9 @@
+@import "https://unpkg.com/@zaydek/duomo@0.7.0/dist/production-full.css";
+
+:root {
+	--transition-duration-default: 100ms;
+}
+
+*:focus {
+	outline: none;
+}

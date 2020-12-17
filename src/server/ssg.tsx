@@ -1,6 +1,6 @@
 import Document from "./document"
 import fs from "fs"
-import handle from "../utils/handle"
+import handle from "../lib/handle"
 import p from "fs/promises"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
