@@ -1,4 +1,5 @@
-import React, { useLayoutEffect } from "react"
+import React from "react"
+import useIsoEffect from "./useIsoEffect"
 
 interface DocumentTitleProps {
 	title: string
@@ -6,7 +7,7 @@ interface DocumentTitleProps {
 }
 
 export default function DocumentTitle({ title, children }: DocumentTitleProps) {
-	useLayoutEffect(() => {
+	useIsoEffect(() => {
 		const originalTitle = document.title
 		document.title = title
 		return () => {
