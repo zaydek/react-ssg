@@ -3,26 +3,9 @@ import fs from "fs"
 import React from "react"
 import ReactDOMServer from "react-dom/server"
 import routes from "../routes"
+import { check, checkAsync } from "./utils"
 import { execSync } from "child_process"
 import { StaticRouter } from "react-router-dom"
-
-function check(fn: Function) {
-	try {
-		const ret = fn()
-		return [ret, null]
-	} catch (err) {
-		return [null, err]
-	}
-}
-
-async function checkAsync<T>(promise: Promise<T>) {
-	try {
-		const ret = await promise
-		return [ret, null]
-	} catch (err) {
-		return [null, err]
-	}
-}
 
 interface Routes {
 	[key: string]: React.ReactNode
@@ -61,7 +44,7 @@ function copyPublicToDist() {
 		// No-op
 		return null
 	}
-	const res = execSync(`cp -r public dist`).toString()
+	const res = execSync("cp -r public dist").toString()
 	if (res) {
 		return new Error("an unexpected error occurred: " + res)
 	}
