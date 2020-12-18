@@ -1,10 +1,36 @@
+// const { createElement } = require("react")
+const markdown = require("markdown-it")()
+
 const env = JSON.stringify(process.env.NODE_ENV || "development")
 
-require("esbuild").buildSync({
-	bundle: true,
-	define: { "process.env.NODE_ENV": env },
-	entryPoints: ["src/server/ssg.tsx"],
-	loader: { ".md": "text" },
-	outfile: "src/server/ssg.js",
-	platform: "node",
-})
+const markdownPlugin = {
+	name: "markdown",
+	setup(build) {
+		let fs = require("fs")
+
+		build.onLoad({ filter: /\.md$/ }, async args => {
+			const text = await fs.promises.readFile(args.path, "utf8")
+			const __html = markdown.render(text)
+			// const rendered = createElement("div", { dangerouslySetInnerHTML: { __html } })
+			return {
+				// contents: rendered,
+				contents: __html,
+				loader: "text",
+			}
+		})
+	},
+}
+
+require("esbuild")
+	.build({
+		bundle: true,
+		define: { "process.env.NODE_ENV": env },
+		entryPoints: ["src/server/ssg.tsx"],
+		outfile: "src/server/ssg.js",
+		platform: "node",
+		plugins: [markdownPlugin],
+	})
+	.catch(err => {
+		console.error(err)
+		process.exit(1)
+	})

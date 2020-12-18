@@ -1,7 +1,6 @@
 import A from "./A"
 import B from "./B"
 import DocumentTitle from "./lib/DocumentTitle"
-import Markdown from "markdown-to-jsx"
 import React, { createElement } from "react"
 import test from "./test.md"
 import { Link, Route, Switch } from "react-router-dom"
@@ -230,10 +229,18 @@ export default function App() {
 					<B />
 				</Page>
 			</Route>
-			{/* 404 */}
-			<Route path="/">
-				<Markdown>{test}</Markdown>
+			<Route path="/c" exact>
+				<Page title="Page /c">
+					<Markdown>{test}</Markdown>
+				</Page>
 			</Route>
+			{/* 404 */}
+			<Route path="/">TODO</Route>
 		</Switch>
 	)
+}
+
+// TODO: __html.replace("{name}", ...)
+function Markdown({ children: __html }: { children: string }) {
+	return <div dangerouslySetInnerHTML={{ __html }} />
 }
