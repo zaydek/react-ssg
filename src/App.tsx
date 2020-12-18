@@ -1,13 +1,10 @@
 import A from "./A"
 import B from "./B"
 import DocumentTitle from "./lib/DocumentTitle"
+import Markdown from "markdown-to-jsx"
 import React, { createElement } from "react"
+import test from "./test.md"
 import { Link, Route, Switch } from "react-router-dom"
-import Test from "./test.md"
-console.log(Test)
-
-// const a = await fetch("https://localhost:8080/public/test.md")
-// console.log(a)
 
 // TODO: Add `align-self`.
 interface StackProps {
@@ -235,7 +232,7 @@ export default function App() {
 			</Route>
 			{/* 404 */}
 			<Route path="/">
-				<div>TODO</div>
+				<Markdown>{test}</Markdown>
 			</Route>
 		</Switch>
 	)

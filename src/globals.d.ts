@@ -1,3 +1,4 @@
 declare module "*.md" {
-	export default ""
+	const content: string
+	export default content
 }
