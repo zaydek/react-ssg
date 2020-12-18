@@ -1,5 +1,5 @@
 import React from "react"
-import type { IRoutes } from "./server/types"
+import type { IStaticRoutes } from "./server/types"
 
 export default {
 	"/": (
@@ -23,4 +23,4 @@ export default {
 			<meta name="description" content="Web site created using create-react-app" />
 		</>
 	),
-} as IRoutes
+} as IStaticRoutes
