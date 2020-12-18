@@ -5,7 +5,6 @@ import ReactDOMServer from "react-dom/server"
 import routes from "../routes"
 import { execSync } from "child_process"
 import { StaticRouter } from "react-router-dom"
-import type { IStaticRoutes } from "./types"
 
 function check(fn: Function) {
 	try {
@@ -25,8 +24,12 @@ async function checkAsync<T>(promise: Promise<T>) {
 	}
 }
 
+interface Routes {
+	[key: string]: React.ReactNode
+}
+
 // Asynchronously generates HTML.
-async function prerenderHTMLAsync(routes: IStaticRoutes) {
+async function prerenderHTMLAsync(routes: Routes) {
 	const modRoutes: typeof routes = {
 		...routes,
 		"/404": null,

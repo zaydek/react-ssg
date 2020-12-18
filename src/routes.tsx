@@ -1,5 +1,8 @@
 import React from "react"
-import type { IStaticRoutes } from "./server/types"
+
+interface Routes {
+	[key: string]: React.ReactNode
+}
 
 export default {
 	"/": (
@@ -23,4 +26,4 @@ export default {
 			<meta name="description" content="Web site created using create-react-app" />
 		</>
 	),
-} as IStaticRoutes
+} as Routes
