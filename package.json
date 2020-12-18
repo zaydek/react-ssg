@@ -8,10 +8,8 @@
 		"prerender-js-dev": "NODE_ENV=development node esbuild.js",
 		"prerender-js-prod": "NODE_ENV=production node esbuild.js",
 		"test": "jest",
-		"build-dev": "yarn prerender-html && yarn prerender-js-dev && yarn force-refresh",
-		"build-prod": "yarn prerender-html && yarn prerender-js-prod && yarn force-refresh",
-		"watch-dev": "yarn prerender-css && yarn nodemon --watch src --exec 'yarn build-dev' --ext ts,tsx",
-		"watch-prod": "yarn prerender-css && yarn nodemon --watch src --exec 'yarn build-prod' --ext ts,tsx",
+		"start": "yarn rimraf dist && yarn prerender-html && yarn prerender-css && yarn nodemon --watch src --exec 'yarn prerender-js-dev && yarn force-refresh' --ext ts,tsx",
+		"build": "yarn rimraf dist && yarn prerender-html && yarn prerender-css && yarn prerender-js-prod",
 		"serve": "yarn http-server dist --brotli"
 	},
 	"dependencies": {
@@ -29,6 +27,7 @@
 		"jest": "^26.6.3",
 		"nodemon": "^2.0.6",
 		"prettier": "^2.2.1",
+		"rimraf": "^3.0.2",
 		"sass": "^1.30.0",
 		"ts-jest": "^26.4.4",
 		"ts-node": "^9.1.0",
