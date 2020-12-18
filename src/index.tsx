@@ -4,6 +4,10 @@ import ReactDOM from "react-dom"
 import routes from "./routes"
 import { BrowserRouter } from "react-router-dom"
 
+import test from "./test.txt"
+
+console.log({ test })
+
 if (process.env.NODE_ENV === "development" || !routes[window.location.pathname]) {
 	console.log("[debug] ReactDOM.render")
 	ReactDOM.render(
