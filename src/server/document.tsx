@@ -1,7 +1,7 @@
 import App from "../App"
 import React from "react"
 
-export default function Document({ metadata }: { metadata: React.ReactNode }) {
+export default function Document({ metadata }: { metadata?: React.ReactNode }) {
 	return (
 		<html lang="en">
 			<head>

@@ -6,10 +6,7 @@ import routes from "../routes"
 import { check, checkAsync } from "./utils"
 import { execSync } from "child_process"
 import { StaticRouter } from "react-router-dom"
-
-interface Routes {
-	[key: string]: React.ReactNode
-}
+import type { Routes } from "./types"
 
 // Asynchronously generates HTML.
 async function prerenderHTMLAsync(routes: Routes) {
@@ -22,7 +19,7 @@ async function prerenderHTMLAsync(routes: Routes) {
 		const promise = new Promise((_, reject) => {
 			const doc = `<!DOCTYPE html>${ReactDOMServer.renderToString(
 				<StaticRouter location={key}>
-					<Document metadata={modRoutes[key]} />
+					<Document metadata={modRoutes[key]?.metadata} />
 				</StaticRouter>,
 			)}`
 			const [, err] = check(() => fs.writeFileSync(`dist/${key === "/" ? "index" : key}.html`, doc))

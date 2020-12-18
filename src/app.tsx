@@ -1,8 +1,7 @@
 import A from "./A"
 import B from "./B"
-import C from "./C"
-import React from "react"
 import DocumentTitle from "./lib/DocumentTitle"
+import React from "react"
 import { Link, Route, Switch } from "react-router-dom"
 
 function Nav() {
@@ -27,11 +26,6 @@ function Nav() {
 			<Link className="group" to="/b">
 				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
 					<div>Open /b</div>
-				</div>
-			</Link>
-			<Link className="group" to="/c">
-				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
-					<div>Open /c</div>
 				</div>
 			</Link>
 		</div>
@@ -69,13 +63,6 @@ export default function App() {
 				<DocumentTitle title="Page /b">
 					<Wrapper>
 						<B />
-					</Wrapper>
-				</DocumentTitle>
-			</Route>
-			<Route path="/c" exact>
-				<DocumentTitle title="Page /c">
-					<Wrapper>
-						<C />
 					</Wrapper>
 				</DocumentTitle>
 			</Route>

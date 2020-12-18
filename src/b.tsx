@@ -23,11 +23,6 @@ export default function B() {
 					<div>Open /a</div>
 				</div>
 			</Link>
-			<Link className="group" to="/c">
-				<div className="hstack w-160 h-32 bg-gray-200 group-touch:bg-gray-300 rounded-full transition">
-					<div>Open /c</div>
-				</div>
-			</Link>
 		</div>
 	)
 }
