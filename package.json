@@ -10,8 +10,8 @@
 		"test": "jest",
 		"build-dev": "yarn prerender-html && yarn prerender-js-dev && yarn force-refresh",
 		"build-prod": "yarn prerender-html && yarn prerender-js-prod && yarn force-refresh",
-		"watch-dev": "nodemon --watch src --exec 'yarn build-dev' --ext ts,tsx",
-		"watch-prod": "nodemon --watch src --exec 'yarn build-prod' --ext ts,tsx",
+		"watch-dev": "yarn prerender-css && yarn nodemon --watch src --exec 'yarn build-dev' --ext ts,tsx",
+		"watch-prod": "yarn prerender-css && yarn nodemon --watch src --exec 'yarn build-prod' --ext ts,tsx",
 		"serve": "yarn http-server dist --brotli"
 	},
 	"dependencies": {
