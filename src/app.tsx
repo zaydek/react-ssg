@@ -3,6 +3,11 @@ import B from "./B"
 import DocumentTitle from "./lib/DocumentTitle"
 import React, { createElement } from "react"
 import { Link, Route, Switch } from "react-router-dom"
+import Test from "./test.md"
+console.log(Test)
+
+// const a = await fetch("https://localhost:8080/public/test.md")
+// console.log(a)
 
 // TODO: Add `align-self`.
 interface StackProps {

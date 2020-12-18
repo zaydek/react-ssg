@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"target": "es2017", // Changed: "es5" -> "es2017"
+		"target": "es2017", // Changed from `"es5"`
 		"module": "commonjs",
 		"lib": ["dom", "esnext"], // Added
 		"jsx": "react", // Added
@@ -24,5 +24,7 @@
 
 		"skipLibCheck": true, // Unchanged
 		"forceConsistentCasingInFileNames": true // Unchanged
-	}
+	},
+	"include": ["src/**/*"], // Added
+	"exclude": ["node_modules/**/*"] // Added
 }

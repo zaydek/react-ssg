@@ -1,4 +1,3 @@
-declare module "*.txt" {
-	const content: any
-	export default content
+declare module "*.md" {
+	export default ""
 }
