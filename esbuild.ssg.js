@@ -18,9 +18,9 @@ require("esbuild")
 	.build({
 		bundle: true,
 		define: { "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development") },
-		entryPoints: ["src/index.tsx"],
-		minify: process.env.NODE_ENV === "production",
-		outfile: "dist/script.js",
+		entryPoints: ["src/server/ssg.tsx"],
+		outfile: "src/server/ssg.js",
+		platform: "node",
 		plugins: [markdownItPlugin],
 	})
 	.catch(err => {

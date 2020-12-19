@@ -3,7 +3,7 @@
 	"license": "MIT",
 	"scripts": {
 		"force-refresh": "osascript -e 'tell application \"Google Chrome\" to reload active tab of window 1'",
-		"prerender-html": "node src/server/esbuild.js && node src/server/ssg.js && yarn rimraf src/server/ssg.js",
+		"prerender-html": "node esbuild.ssg.js && node src/server/ssg.js && yarn rimraf src/server/ssg.js",
 		"prerender-css": "sass --no-charset --no-source-map --style=compressed src/style.scss dist/style.css",
 		"prerender-js-dev": "NODE_ENV=development node esbuild.js",
 		"prerender-js-prod": "NODE_ENV=production node esbuild.js",
