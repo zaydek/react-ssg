@@ -2,12 +2,11 @@
 	"name": "react-ssg",
 	"license": "MIT",
 	"scripts": {
-		"prerender-html": "node esbuild/prerender.js && node src/server/prerender.js && yarn rimraf src/server/prerender.js",
-		"prerender-css": "sass --no-charset --no-source-map --style=compressed src/style.scss build/style.css",
+		"prerender": "node scripts/prerender.js && node src/server/prerender.js && rm src/server/prerender.js",
 		"test": "jest",
-		"start": "yarn rimraf build && yarn prerender-html && yarn prerender-css && node esbuild/start.js",
-		"build": "yarn rimraf build && yarn prerender-html && yarn prerender-css && NODE_ENV=production node esbuild/build.js",
-		"serve": "yarn http-server build --brotli"
+		"start": "yarn prerender && node scripts/start.js",
+		"build": "yarn prerender && NODE_ENV=production node scripts/build.js",
+		"serve": "live-server --host=localhost --port=8080 build"
 	},
 	"dependencies": {
 		"react": "^17.0.1",
@@ -23,12 +22,10 @@
 		"@types/sass": "^1.16.0",
 		"chokidar": "^3.4.3",
 		"esbuild": "^0.8.18",
-		"http-server": "^0.12.3",
 		"jest": "^26.6.3",
 		"live-server": "^1.2.1",
 		"markdown-it": "^12.0.3",
 		"prettier": "^2.2.1",
-		"rimraf": "^3.0.2",
 		"sass": "^1.30.0",
 		"ts-jest": "^26.4.4",
 		"typescript": "^4.1.2"

@@ -1,7 +1,12 @@
 const { build } = require("esbuild")
+// const { execSync } = require("child_process")
 const markdownItPlugin = require("./markdown-it-plugin")
 
 ;(() => {
+	// const msg = execSync("rm -rf build && mkdir build").toString()
+	// if (msg) {
+	// 	throw new Error(msg)
+	// }
 	build({
 		bundle: true,
 		define: { "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development") },
@@ -10,7 +15,8 @@ const markdownItPlugin = require("./markdown-it-plugin")
 		outfile: "build/script.js",
 		plugins: [markdownItPlugin],
 	}).catch(err => {
-		console.error(err)
-		process.exit(1)
+		if (err) {
+			throw err
+		}
 	})
 })()

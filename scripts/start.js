@@ -22,9 +22,10 @@ const markdownItPlugin = require("./markdown-it-plugin")
 			builder.rebuild()
 		})
 	liveServer.start({
+		file: "index.html",
 		host: "localhost",
 		open: true,
-		port: +process.env.PORT || 8080,
+		port: +process.env.PORT || 8000,
 		root: "build",
 	})
 })()

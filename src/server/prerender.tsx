@@ -4,7 +4,6 @@ import React from "react"
 import ReactDOMServer from "react-dom/server"
 import routes from "../routes"
 import { check, checkAsync } from "./utils"
-import { execSync } from "child_process"
 import { StaticRouter } from "react-router-dom"
 import type { Routes } from "./types"
 
@@ -36,29 +35,9 @@ async function prerenderHTMLAsync(routes: Routes) {
 	return null
 }
 
-function copyPublic() {
-	if (!fs.existsSync("public")) {
-		// No-op
-		return null
-	}
-	// TODO
-	const res = execSync("cp -r public build").toString()
-	if (res) {
-		return new Error("an unexpected error occurred: " + res)
-	}
-	return null
-}
-
 ;(async () => {
-	if (!fs.existsSync("build")) {
-		fs.mkdirSync("build")
-	}
-	const err1 = await prerenderHTMLAsync(routes)
-	if (err1) {
-		throw err1
-	}
-	const err2 = copyPublic()
-	if (err2) {
-		throw err2
+	const err = await prerenderHTMLAsync(routes)
+	if (err) {
+		throw err
 	}
 })()
