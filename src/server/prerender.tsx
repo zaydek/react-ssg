@@ -22,7 +22,7 @@ async function prerenderHTMLAsync(routes: Routes) {
 					<Document metadata={modRoutes[key]?.metadata} />
 				</StaticRouter>,
 			)}`
-			const [, err] = check(() => fs.writeFileSync(`dist/${key === "/" ? "index" : key}.html`, doc))
+			const [, err] = check(() => fs.writeFileSync(`build/${key === "/" ? "index" : key}.html`, doc))
 			if (err) {
 				reject(err)
 			}
@@ -36,12 +36,13 @@ async function prerenderHTMLAsync(routes: Routes) {
 	return null
 }
 
-function copyPublicToDist() {
+function copyPublic() {
 	if (!fs.existsSync("public")) {
 		// No-op
 		return null
 	}
-	const res = execSync("cp -r public dist").toString()
+	// TODO
+	const res = execSync("cp -r public build").toString()
 	if (res) {
 		return new Error("an unexpected error occurred: " + res)
 	}
@@ -49,15 +50,15 @@ function copyPublicToDist() {
 }
 
 ;(async () => {
-	if (!fs.existsSync("dist")) {
-		fs.mkdirSync("dist")
+	if (!fs.existsSync("build")) {
+		fs.mkdirSync("build")
 	}
 	const err1 = await prerenderHTMLAsync(routes)
 	if (err1) {
-		throw new Error("prerenderHTMLAsync: " + err1.toString())
+		throw err1
 	}
-	const err2 = copyPublicToDist()
+	const err2 = copyPublic()
 	if (err2) {
-		throw new Error("copyPublicToDist: " + err2.toString())
+		throw err2
 	}
 })()

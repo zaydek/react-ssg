@@ -6,8 +6,5 @@
 /*.log*
 /node_modules
 
-# NPM
-/dist
-
-# React
-/public/script.js
+# Production
+/build
