@@ -4,8 +4,8 @@
 	"scripts": {
 		"prerender": "node scripts/prerender.js && node src/server/prerender.js && rm src/server/prerender.js",
 		"test": "jest",
-		"start": "yarn prerender && node scripts/start.js",
-		"build": "yarn prerender && NODE_ENV=production node scripts/build.js",
+		"start": "rm -rf build && mkdir build && yarn prerender && node scripts/start.js",
+		"build": "rm -rf build && mkdir build && yarn prerender && NODE_ENV=production node scripts/build.js",
 		"serve": "live-server --host=localhost --port=8080 build"
 	},
 	"dependencies": {

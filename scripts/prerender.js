@@ -1,15 +1,10 @@
 const { build } = require("esbuild")
 const { check } = require("./utils")
-const { execSync } = require("child_process")
 const fs = require("fs")
 const markdownItPlugin = require("./markdown-it-plugin")
 const sass = require("sass")
 
 ;(() => {
-	const msg = execSync("rm -rf build && mkdir build").toString()
-	if (msg) {
-		throw new Error(msg)
-	}
 	build({
 		bundle: true,
 		define: { "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development") },
