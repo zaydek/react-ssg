@@ -5,10 +5,11 @@
 		"prerender": "node scripts/prerender.js && node src/server/prerender.js && rm src/server/prerender.js",
 		"test": "jest",
 		"start": "rm -rf build && mkdir build && yarn prerender && node scripts/start.js",
-		"build": "rm -rf build && mkdir build && yarn prerender && NODE_ENV=production node scripts/build.js",
+		"build": "rm -rf build && mkdir build && yarn prerender && cross-env NODE_ENV=production node scripts/build.js",
 		"serve": "live-server --host=localhost --port=8080 build"
 	},
 	"dependencies": {
+		"cross-env": "^7.0.3",
 		"react": "^17.0.1",
 		"react-dom": "^17.0.1",
 		"react-router-dom": "^5.2.0"
