@@ -217,6 +217,7 @@ export default function App() {
 			<Route path="/" exact>
 				<Page title="Page /">
 					<div>Hello, world!</div>
+					<img src='./copyright-free-images-750x420.jpg' />
 				</Page>
 			</Route>
 			<Route path="/a" exact>

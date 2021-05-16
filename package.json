@@ -2,7 +2,7 @@
 	"name": "react-ssg",
 	"license": "MIT",
 	"scripts": {
-		"prerender": "node scripts/prerender.js && node src/server/prerender.js && rm src/server/prerender.js",
+		"prerender": "node scripts/prerender.js && node src/server/prerender.js && rm src/server/prerender.js && copyfiles -u 1 static/*.* build",
 		"test": "jest",
 		"start": "rm -rf build && mkdir build && yarn prerender && node scripts/start.js",
 		"build": "rm -rf build && mkdir build && yarn prerender && NODE_ENV=production node scripts/build.js",
@@ -21,6 +21,7 @@
 		"@types/react-router-dom": "^5.1.6",
 		"@types/sass": "^1.16.0",
 		"chokidar": "^3.4.3",
+		"copyfiles": "^2.4.1",
 		"esbuild": "^0.8.18",
 		"jest": "^26.6.3",
 		"live-server": "^1.2.1",
